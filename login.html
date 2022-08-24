@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script src="/js/firebase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+
+
+   <script>
+	// Initialize Firebase.
+  var config = {
+        apiKey: "AIzaSyCJcUXqHVDV1TBpz3py7woWFgG4_klyyBo",
+    authDomain: "fabric-burger-co.firebaseapp.com",
+    projectId: "fabric-burger-co",
+    storageBucket: "fabric-burger-co.appspot.com",
+    messagingSenderId: "194551896772",
+    appId: "1:194551896772:web:a6588d9c274f26ee98c791",
+    measurementId: "G-YXF8P02QTF"
+	 };
+	app = firebase.initializeApp(config);
+
+</script>
+
+
+
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="images/burger.jpeg" alt="">
+        <div class="text">
+          <span class="text-1">Say hello to hand stiched <br> rewards and deals.</span>
+         <br>
+          <span class="text-2">Our Stichers&reg rewards program brings daily deals to work towards free burgers!</span>
+        </div>
+      </div>
+      <div class="back">
+        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form action="#">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input id="usrn" type="text" placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input id="psw" type="password" placeholder="Enter your password" required>
+              </div>
+              <div class="text"><a href="#">Forgot password?</a></div>
+              <div class="button input-box">
+                <input id="log" type="submit" value="Submit" onclick="LoginProcess()">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
+            </div>
+        </form>
+      </div>
+        <div class="signup-form">
+          <div class="title">Signup</div>
+        <form action="#">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter your password" required>
+              </div>
+              <div class="button input-box">
+                <button type="button" value="Submit" onclick='LoginProcess()'></button>
+              </div>
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+            </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+
+
+	  // Sign-out successful.
+	  firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    //alert("authworked")
+	    {window.open("index.html",'_self');}
+	  } else {
+
+	  }
+
+
+	})
+function LoginProcess() {
+	var theEmail = document.getElementById("usrn").value;
+	var thePassword = document.getElementById("psw").value;
+	firebase.auth().signInWithEmailAndPassword(theEmail,thePassword).catch(function (error) {
+	  // Handle Errors here.
+
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+		console.log(errorCode, errorMessage)
+	});
+
+}
+
+
+var input = document.getElementById("psw");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("log").click();
+  }
+});
+
+</script>
+</html>

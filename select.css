@@ -1,0 +1,138 @@
+.container-info {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    
+    background-color: transparent; }
+    @media (min-width: 768px) {
+      .container-info {
+        float: left;
+        /*position: fixed;*/
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 50%; } }
+  
+  
+  
+  .container-main {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    padding-left: 40px;
+    background-color: transparent; }
+    @media (min-width: 768px) {
+      .container-main {
+        float: right;
+        /*position: fixed;*/
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 50%; } }
+  
+  
+  
+        * {
+            box-sizing: border-box;
+          }
+          .row {
+            display: flex;
+          }
+          .service {
+       
+            width: 80%;
+            margin-top: 40px;
+            background-color: #c0c0c0;
+            box-shadow: 1px 2px grey;
+            border-radius: 5px;
+            
+          }
+          .block {
+            height: 50vh;
+          }
+          .row > div {
+            flex: 1;
+          }
+          .col-wrap {
+            display: flex;
+            flex-direction: column;
+ 
+          }
+          .col-wrap > div {
+            flex: 1;
+          }
+          .block2 {
+            
+          }
+
+          #col-1 {
+            position: fixed;
+
+            float: left;
+           
+         
+            z-index: 1010101010
+          }
+          
+          #col-2 {
+         
+            float: right;
+            margin-left: -60px;
+            width: 70%;
+            z-index: 1010101010
+          }
+
+         .icons {
+            display: inline-block;
+            text-align:center;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 80px;
+         }
+
+
+         .grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.01); 
+    box-shadow: 1px 3px grey;}
+
+
+
+
+    .cssanimation, .cssanimation span {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+  }
+  
+  .cssanimation span { display: inline-block }
+  
+  .fadeInBottom { animation-name: fadeInBottom }
+  @keyframes fadeInBottom {
+      from {
+          opacity: 0;
+          transform: translateY(100%);
+      }
+      to { opacity: 1 }
+  }
+
+
+
+  .cssdownanimation, .cssdownanimation span {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cssdownanimation span { display: inline-block }
+
+.fadeOutBottom { animation-name: fadeOutBottom }
+@keyframes fadeOutBottom {
+    from {
+        opacity: 1;
+        transform: translateY(100);
+    }
+    to { opacity: 0 }
+}
+
+
+  

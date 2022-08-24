@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="search.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
+    <script src="/js/select.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
+        <a class="titles" href="">Home</a>
+        <img class="logo" src="/images/logo.png" >
+        <a class="titles" href="">Order</a>
+        <div class="dropdown" class="nav-icons" src="/images/search.png">
+            <i class="fa-solid fa-user dropbtn"></i>
+            <div class="dropdown-content">
+              <a id="Name" href="#">WELCOME, OSCAR</a>
+              <a id="Account" href="login.html">My Account</a>
+              <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
+            </div>
+          </div>
+      </nav>
+
+
+  
+
+
+             <!-- <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+                <input type="text" id="postcode" placeholder="Search.."  maxlength="10" name="search2">
+                <button type="button" onclick="store()"><i class="fa fa-search"></i></button>
+              </form> -->
+           </div>
+         
+
+
+           <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+
+
+                <section>
+                    <body>
+                       <div class="container-info">			
+                    
+                         <script async defer
+                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChljim2zLlvuIkZLCYpFboIXRDHOSe6fE&callback=initialize">
+                       </script>
+                       
+                       <div id="map"></div>
+                       </div>
+                       <div class="container-main">
+                        <span class="close">&times;</span>
+
+                        <a class="heading" style="margin-left: 36%;">Your Closest Store is</a>
+                        <br>
+                        <br>
+                             
+
+             <br>
+             <br>
+  
+                        <b class="store fa-solid fa-location-pin" id="store" style="margin-left: 37%;"> Loading</b>
+                        <br>
+                        <br>
+                        <b class="storaddress" id="storeaddress" style="margin-left: 30%;">15 Sidney Nolan Av, Conder 2906</b>
+
+
+
+                        <br>
+                        <br>
+<br>
+                        <b class="storaddress" id="storeaddress" style="margin-left: 10%;">OPENING HOURS</b>
+                        <b class="storaddress" id="storeaddress" style="margin-left: 25%;">CONTACT</b>
+<br>
+<br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">MONDAY 8:00am-5:00pm</a>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">02 6294 2543</a>
+                        <br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">TUESDAY 8:00am-5:00pm</a>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 9%;">lanyon@fabricburger.co</a>
+                        <br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">WEDNESDAY 8:00am-5:00pm</a>
+                        <br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">THURSDAY 8:00am-6:00pm</a>
+                        <br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">FRIDAY 8:00am-11:00pm</a>
+                        <br> 
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">SATURDAY 8:00am-11:00pm</a> 
+                        <br>
+                        <a class="storaddress" id="storeaddress" style="margin-left: 10%;">SUNDAY 8:00am-10:00pm</a>
+                      
+<br>
+<br>
+<br>
+<br>
+                        <button style="margin-left:10%; height: 40px; width: 180px; background-color: orange;">GET DIRECTIONS</button>
+                        <button style="margin-left:10%; height: 40px; width: 180px; background-color: green;">START ORDER</button>
+                       </div>
+                    </body>
+                    </section>
+              
+            
+
+             <br>
+             <br>
+             <br>
+           
+             
+
+
+            </div>
+          
+          </div>
+          
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <b class="titles">Find your closest store</b>
+          <br>
+       
+          <input type="text" id="myInput" class="searchBox" style="margin-top:5%; margin-left:5%;" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+          <br>
+          <br>
+          <a href="google.com" style="margin-left:5%; background-attachment: fixed;">Not showing? Select from all stores here.</a>
+<ul id="myUL" style="margin-top:-3%; margin-left:5%; z-index: 100">
+
+  <li><a>Acton - 2601</a></li>
+  <li><a>Ainsley - 2602</a></li>
+  <li><a>Amaroo - 2914</a></li>
+  <li><a>Aranda - 2614</a></li>
+  <li><a>Banks - 2906</a></li>
+  <li><a>Barton - 2600</a></li>
+  <li><a>Belconnen - 2616</a></li>
+  <li><a>Belconnen DC - 2617</a></li>
+  <li><a>Bonner - 2914</a></li>
+  <li><a>Bonython - 2905</a></li>
+  <li><a>Braddon - 2612</a></li>
+  <li><a>Bruce - 2617</a></li>
+  <li><a>Calwell - 2905</a></li>
+  <li><a>Campbell - 2612</a></li>
+  <li><a>Canberra - 2601</a></li>
+  <li><a>Canberra City - 2600</a></li>
+  <li><a>Casey - 2913</a></li>
+  <li><a>Chapman - 2611</a></li>
+  <li><a>Charnwood - 2615</a></li>
+  <li><a>Chisholm - 2905</a></li>
+  <li><a>Conder - 2906</a></li>
+  <li><a>Cook - 2614</a></li>
+  <li><a>Coombs - 2611</a></li>
+  <li><a>Crace - 2911</a></li>
+  <li><a>Curtin - 2605</a></li>
+  <li><a>Deakin - 2600</a></li>
+  <li><a>Denman Prospect - 2611</a></li>
+  <li><a>Dickson - 2602</a></li>
+  <li><a>Downer - 2602</a></li>
+  <li><a>Duffy - 2611</a></li>
+  <li><a>Dunlop - 2615</a></li>
+  <li><a>Evatt - 2617</a></li>
+  <li><a>Fadden - 2904</a></li>
+  <li><a>Farrer - 2607</a></li>
+  <li><a>Fisher - 2611</a></li>
+  <li><a>Florey - 2615</a></li>
+  <li><a>Flynn - 2615</a></li>
+  <li><a>Forde - 2914</a></li>
+  <li><a>Forrest - 2603</a></li>
+  <li><a>Franklin - 2913</a></li>
+  <li><a>Fraser - 2615</a></li>
+  <li><a>Fyshwick - 2609</a></li>
+  <li><a>Garran - 2605</a></li>
+  <li><a>Gilmore - 2905</a></li>
+  <li><a>Giralang - 2617</a></li>
+  <li><a>Gordon -  2906</a></li>
+  <li><a>Gowrie - 2904</a></li>
+  <li><a>Greenway - 2900</a></li>
+  <li><a>Griffith - 2603</a></li>
+  <li><a>Gungahlin - 2912</a></li>
+  <li><a>Hackett - 2602</a></li>
+  <li><a>Hall - 2618</a></li>
+  <li><a>Harrison - 2914</a></li>
+  <li><a>Hawker - 2614</a></li>
+  <li><a>Higgins - 2615</a></li>
+  <li><a>Holder - 2611</a></li>
+  <li><a>Holt - 2615</a></li>
+  <li><a>Hughes - 2605</a></li>
+  <li><a>Isaacs - 2607</a></li>
+  <li><a>Isabella Plains - 2905</a></li>
+  <li><a>Jacka - 2914</a></li>
+  <li><a>Kaleen - 2617</a></li>
+  <li><a>Kambah - 2902</a></li>
+  <li><a>Kingston - 2604</a></li>
+  <li><a>Latham - 2615</a></li>
+  <li><a>Lawson - 2617</a></li>
+  <li><a>Lynehem - 2602</a></li>
+  <li><a>Lyons - 2606</a></li>
+  <li><a>Macarthur - 2904</a></li>
+  <li><a>MacGregor - 2615</a></li>
+  <li><a>Macquarie - 2614</a></li>
+  <li><a>Manuka - 2603</a></li>
+  <li><a>Mawson - 2607</a></li>
+  <li><a>McKellar - 2617</a></li>
+  <li><a>Melba - 2615</a></li>
+  <li><a>Molonglo</a></li>
+  <li><a>Monash - 2904</a></li>
+  <li><a>Moncrieff - 2914</a></li>
+  <li><a>Narrabundah - 2604</a></li>
+  <li><a>Ngunnawal - 2913</a></li>
+  <li><a>Nicholls - 2913</a></li>
+  <li><a>North Dunlop - 2615</a></li>
+  <li><a>North Evatt - 2617</a></li>
+  <li><a>North Lyneham - 2602</a></li>
+  <li><a>O'Connor - 2602</a></li>
+  <li><a>O'Malley - 2606</a></li>
+  <li><a>Oaks Estate - 2620</a></li>
+  <li><a>Oxley - 2903</a></li>
+  <li><a>Page - 2614</a></li>
+  <li><a>Palmerston - 2913</a></li>
+  <li><a>Pearce - 2607</a></li>
+  <li><a>Phillip - 2606</a></li>
+  <li><a>Pialligo - 2609</a></li>
+  <li><a>Red Hill - 2603</a></li>
+  <li><a>Reid - 2612</a></li>
+  <li><a>Richardson - 2905</a></li>
+  <li><a>Rivett - 2611</a></li>
+  <li><a>Scullin - 2614</a></li>
+  <li><a>Spence - 2615</a></li>
+  <li><a>Stirling - 2611</a></li>
+  <li><a>Strathnairn - 2615</a></li>
+  <li><a>Taylor - 2913</a></li>
+  <li><a>Tharwa - 2620</a></li>
+  <li><a>Theodore - 2905</a></li>
+  <li><a>Throsby - 2914</a></li>
+  <li><a>Torrens - 2607</a></li>
+  <li><a>Turner - 2612</a></li>
+  <li><a>Wanniassa - 2903</a></li>
+  <li><a>Waramanga - 2611</a></li>
+  <li><a>Watson - 2602</a></li>
+  <li><a>Weetangera - 2615</a></li>
+  <li><a>Weston - 2611</a></li>
+  <li><a>Whitlam - 2611</a></li>
+  <li><a>Wright - 2611</a></li>
+  <li><a>Yarralumla - 2600</a></li>
+  
+
+
+
+
+
+      
+
+
+</ul>
+
+<script>
+
+
+
+
+function getEventTarget(e) {
+    e = e || window.event;
+    return e.target || e.srcElement; 
+}
+
+var ul = document.getElementById('myUL');
+ul.onclick = function(event) {
+    var target = getEventTarget(event);
+    console.log(target.innerHTML.slice(-4));
+    postcodeval = target.innerHTML.slice(-4);
+
+    store();
+
+};
+
+
+
+
+document.getElementById("myUL").style.display = "none";
+function myFunction() {
+
+
+var l_search = document.getElementById("myInput").value
+var l_count = l_search.length;
+
+
+console.log(l_count)
+   
+   
+
+
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+
+
+    if (l_count < 4) {
+        document.getElementById("myUL").style.display = "none";
+    } else {
+        document.getElementById("myUL").style.display = "block";
+    }
+
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+
+    if (document.getElementById("myInput").value == "") {
+        document.getElementById("myUL").style.display = "none";
+    console.log("empty")
+    
+}
+}
+
+
+</script>
+
+
+          <script>
+
+            var postcodeval;
+          // Get the modal
+          var modal = document.getElementById("myModal");
+          
+          // Get the button that opens the modal
+          var btn = document.getElementById("myBtn");
+          
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+          
+          // When the user clicks the button, open the modal 
+        
+          
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+          </script>
+
+
+
+
+    
+<script>
+
+var store1 = ["2905", "2906", "2620"]
+var store2 = ["2900","2902", "2903", "2904", "2905"]
+var store3 = ["2611"]
+var store4 = ["2605", "2606", "2607"]
+var store5 = ["2600","2603", "2604", "2609", "2620"]
+var store6 = ["2614","2615","2616","2617"]
+var store7 = ["2618", "2911","2912", "2913", "2914"]
+var store8 = ["2600","2601","2602","2609","2612"]
+
+function store() {
+   
+    var storename;
+    console.log(postcodeval)
+
+    
+    if (store1.includes(postcodeval) == true) {
+        console.log("store1")
+        storename = "Lanyon"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store2.includes(postcodeval) == true) {
+        console.log("store2")
+        storename = "Greenway"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store3.includes(postcodeval) == true) {
+        console.log("store3")
+        storename = "Weston Creek"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store4.includes(postcodeval) == true) {
+        console.log("store4")
+        storename = "Phillip"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store5.includes(postcodeval) == true) {
+        console.log("store5")
+        storename = "Kingston Foreshore"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store6.includes(postcodeval) == true) {
+        console.log("store6")
+        storename = "Belconnen"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store7.includes(postcodeval) == true) {
+        console.log("store7")
+        storename = "Gungahlin"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    } else if (store8.includes(postcodeval) == true) {
+        console.log("store8")
+        storename = "Braddon"
+        modal.style.display = "block";
+        document.getElementById("store").innerHTML = " " + storename;
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>

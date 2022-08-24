@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="order.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
+    <script src="/js/order.js"></script>
+    <script src="/js/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+firebaseinit()
+pullMenu("burger")
+
+    </script>
+    <nav>
+        <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
+        <a class="titles" href="">Home</a>
+        <img class="logo" src="/images/logo.png" >
+        <a class="titles" href="">Order</a>
+        <div class="dropdown" class="nav-icons" src="/images/search.png">
+            <i class="fa-solid fa-user dropbtn"></i>
+            <div class="dropdown-content">
+              <a id="Name" href="#">WELCOME, OSCAR</a>
+              <a id="Account" href="login.html">My Account</a>
+              <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
+            </div>
+          </div>
+      </nav>
+
+
+      <div class="page">
+        <nav class="page__menu menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">BURGERS</a></li>
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">SIDES</a></li>
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">DESERTS</a></li>
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">DRINKS</a></li>
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">EXTRAS</a></li>
+            <li class="menu__group"><a href="#0" class="menu__link r-link text-underlined">DEALS</a></li>
+
+          </ul>
+        </nav>
+      </div>
+
+      <div id="itemmodal" class="item-modal">
+
+        <!-- Modal content -->
+        <div class="item-modal-content">
+          <div class="item-modal-header">
+            <span class="close">&times;</span>
+            <h2>Modal Header</h2>
+          </div>
+          <div class="item-modal-body">
+            <p>Some text in the Modal Body</p>
+            <p>Some other text...</p>
+          </div>
+          <div class="item-modal-footer">
+            <h3>Modal Footer</h3>
+          </div>
+        </div>
+      
+      </div>
+
+      <section>
+        <body>
+           <div class="container-info">			
+             <h1>Order</h1>
+             <button id="myBtn">Open Modal</button>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <br>
+         
+            <div class="column-4 tile grow project-2">
+                <img class="image" src="/images/product_shots/burger.png">
+                <h2 class="item-title">PLAININO</h2>
+                <h2 class="item-description">Our most basic, simple and boring burger. Yet packs on falvour.</h2>
+                <button class="item-order" onclick="launchProduct()">Order</button>
+            </div>
+            
+            <div class="column-4 tile grow project-3">
+                <img class="image" src="/images/product_shots/burger.png">
+                <h2 class="item-title">VEGENATION</h2>
+                <h2 class="item-description">100% meat free, featuring a plant based patty on a mushroom bun.</h2>
+                <button class="item-order" onclick="launchProduct()">Order</button>
+            </div>
+        
+         
+            
+            <div class="column-4 project-8">
+            </div>
+           </div>
+           <div class="container-main">
+             <h1 style="padding-left:20px;">My Cart</h1>
+             
+             <div class="order-item" id="cart">
+                <h1>Cart Empty</h1>
+             </div>
+             <input type="text" class="coupon" placeholder="Enter coupons here" maxlength="6" id="theInput"> 
+             <input type="button" class="apply" value=" Apply " id="theButton">  
+
+             <div class="total">
+                <h1 class="subtotal">Subtotal:</h1>
+                <h1 class="discount">Discount:</h1>
+                <h1 class="totalprice">Total:</h1>
+             </div>
+
+             <button class="checkout">CHECKOUT</button>
+           </div>
+           <script>
+
+
+
+var modal = document.getElementById("item-modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+
+
+function launchProduct() {
+    itemmodal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  itemmodal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == itemmodal) {
+    itemmodal.style.display = "none";
+  }
+}
+           </script>
+        </body>
+
+        
+        </section>

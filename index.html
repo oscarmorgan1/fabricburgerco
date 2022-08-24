@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+	
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Fabric Burger Co.</title>
+</head>
+
+<script>
+	// Initialize Firebase.
+var config = {
+        apiKey: "AIzaSyCJcUXqHVDV1TBpz3py7woWFgG4_klyyBo",
+    authDomain: "fabric-burger-co.firebaseapp.com",
+    projectId: "fabric-burger-co",
+    storageBucket: "fabric-burger-co.appspot.com",
+    messagingSenderId: "194551896772",
+    appId: "1:194551896772:web:a6588d9c274f26ee98c791",
+    measurementId: "G-YXF8P02QTF"
+	 };
+	app = firebase.initializeApp(config);
+
+
+  
+function loginwithokta() {
+
+
+  var provider = new firebase.auth.OAuthProvider('oidc.okta');
+
+  provider.setCustomParameters({
+  // Target specific email with login hint.
+  login_hint: 'user@example.com'
+});
+
+
+  firebase.auth().signInWithRedirect(provider)
+  .then((result) => {
+    // IdP data available in result.additionalUserInfo.profile.
+    // ...
+
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // OAuth access and id tokens can also be retrieved:
+    var accessToken = credential.accessToken;
+    var idToken = credential.idToken;
+   
+  })
+  .catch((error) => {
+    // Handle error.
+    console.log(error)
+  });
+
+}
+
+    firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    //alert("authworked")
+      console.log("auth")
+      console.log(firebase.auth().currentUser.uid)
+	    {
+            document.getElementById("Name").innerHTML = ("Welcome, Oscar")
+        }
+	  } else {
+        document.getElementById("Name").innerHTML = ("Login")
+        document.getElementById("Name").href="login.html"; 
+        document.getElementById("Account").style.display = 'none'
+        document.getElementById("Action").style.display = "none";
+	  }
+	})
+
+
+</script>
+
+<body>
+
+  <button onclick="loginwithokta()">OKTA</button>
+    
+
+    <nav>
+        <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
+        <a class="titles" href="">Home</a>
+        <img class="logo" src="/images/logo.png" >
+        <a class="titles" href="">Order</a>
+        <div class="dropdown" class="nav-icons" src="/images/search.png">
+            <i class="fa-solid fa-user dropbtn"></i>
+            <div class="dropdown-content">
+              <a id="Name" href="#">WELCOME, OSCAR</a>
+              <a id="Account" href="login.html">My Account</a>
+              <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
+            </div>
+          </div>
+      </nav>
+
+
+      <div class="container">
+        <img class="bg-image" src="/images/home-burger.jpeg" >
+
+        <div class="centered">Hand stiched burgers from our home <br> to yours.</div>
+        <div class="smaller">Welcome to Fabric Burger Co.</div>
+
+
+
+
+           
+
+            <button name="submit" class="buttons action_btn submit" type="submit" value="Start Order" onclick="location.href='/start.html'">Start Order</button>
+
+
+    
+      </div>
+
+
+<script>
+
+
+function LogoutProcess() {
+
+
+    firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	  firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    //alert("authworked")
+	    {window.open("dashboard.html",'_self');}
+	  } else {
+
+	  }
+	})
+
+	}).catch(function(error) {
+	  // An error happened.
+
+	});
+
+
+}
+    
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="select.css" />
+    <link rel="stylesheet" type="text/css" href="search.css">
+    <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
+    <script src="/js/start.js"></script>
+    <script src="/js/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+     <title>Fabric Burger Co.</title>
+</head>
+
+
+<body>
+    
+
+    <nav>
+        <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
+        <a class="titles" href="">Home</a>
+        <img class="logo" src="/images/logo.png" >
+        <a class="titles" href="">Order</a>
+        <div class="dropdown" class="nav-icons" src="/images/search.png">
+            <i class="fa-solid fa-user dropbtn"></i>
+            <div class="dropdown-content">
+              <a id="Name" href="#">WELCOME, OSCAR</a>
+              <a id="Account" href="login.html">My Account</a>
+              <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
+            </div>
+          </div>
+      </nav>
+<script>
+  firebaseinit()
+</script>
+
+      
+<section style="padding-top: 5%;">
+<body>
+   <div class="container-info" style="border-right: 2px solid; margin-right: -2 px">			
+     <h1 id="banner-text" class="cssanimation sequence fadeInBottom"style="font-family: 'head'; text-align: center; font-size: 40px; padding-right: 20px; padding-top: 20%; padding-left:90px">How would you like to <br>experience Fabric?</h1>
+   </div>
+   <div class="container-main">
+
+
+        <div class="col-wrap">
+          <div id="pickup" onclick="pickup()" style="height: 100px;" class="grow service col-4-md text-center block2">
+            <div id="col-1">
+                <i class="icons fa-solid fa-shop fa-5x"></i>
+              </div>
+              <div id="col-2">
+                <h2 style="font-family: 'head"> Pickup in store </h5>
+                    <h5 style="font-family: 'head"> Pickup your order from your closest store. </h2>
+              </div>            
+          </div>
+
+          <div id="deliverey" style="height: 100px" class="grow service col-4-md text-center block2">
+            <div id="col-1">
+                <i class="icons fa-solid fa-truck fa-5x"></i>
+              </div>
+              <div id="col-2">
+                <h2 style="font-family: 'head"> Delivered to door </h5>
+                    <h5 style="font-family: 'head"> Get all your favourites delivered right to your doorstep. </h2>
+              </div>            
+          </div>
+
+
+          <div id="saved"style="height: 100px;" class="grow service col-4-md text-center block2">
+            <div id="col-1">
+                <i class="icons fa-solid fa-star fa-5x"></i>
+              </div>
+              <div id="col-2">
+                <h2 style="font-family: 'head"> Saved orders </h5>
+                    <h5 style="font-family: 'head"> View your recent orders and reorder with ease. </h2>
+              </div>    
+              
+              
+          </div>
+
+          <div id="searchdiv" class="cssanimation sequence fadeInBottom searchdiv" hidden>
+          <b class="find-title">Find your closest store</b>
+          <br>
+       
+          <input type="text" id="myInput" class="searchBox" style="margin-top:5%; margin-left:5%;" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+          <br>
+          <br>
+          <a href="google.com" style="margin-left:5%; background-attachment: fixed;">Not showing? Select from all stores here.</a>
+<ul hidden id="myUL" style="margin-top:-3%; margin-left:5%; z-index: 100">
+
+  <li><a>Acton - 2601</a></li>
+  <li><a>Ainsley - 2602</a></li>
+  <li><a>Amaroo - 2914</a></li>
+  <li><a>Aranda - 2614</a></li>
+  <li><a>Banks - 2906</a></li>
+  <li><a>Barton - 2600</a></li>
+  <li><a>Belconnen - 2616</a></li>
+  <li><a>Belconnen DC - 2617</a></li>
+  <li><a>Bonner - 2914</a></li>
+  <li><a>Bonython - 2905</a></li>
+  <li><a>Braddon - 2612</a></li>
+  <li><a>Bruce - 2617</a></li>
+  <li><a>Calwell - 2905</a></li>
+  <li><a>Campbell - 2612</a></li>
+  <li><a>Canberra - 2601</a></li>
+  <li><a>Canberra City - 2600</a></li>
+  <li><a>Casey - 2913</a></li>
+  <li><a>Chapman - 2611</a></li>
+  <li><a>Charnwood - 2615</a></li>
+  <li><a>Chisholm - 2905</a></li>
+  <li><a>Conder - 2906</a></li>
+  <li><a>Cook - 2614</a></li>
+  <li><a>Coombs - 2611</a></li>
+  <li><a>Crace - 2911</a></li>
+  <li><a>Curtin - 2605</a></li>
+  <li><a>Deakin - 2600</a></li>
+  <li><a>Denman Prospect - 2611</a></li>
+  <li><a>Dickson - 2602</a></li>
+  <li><a>Downer - 2602</a></li>
+  <li><a>Duffy - 2611</a></li>
+  <li><a>Dunlop - 2615</a></li>
+  <li><a>Evatt - 2617</a></li>
+  <li><a>Fadden - 2904</a></li>
+  <li><a>Farrer - 2607</a></li>
+  <li><a>Fisher - 2611</a></li>
+  <li><a>Florey - 2615</a></li>
+  <li><a>Flynn - 2615</a></li>
+  <li><a>Forde - 2914</a></li>
+  <li><a>Forrest - 2603</a></li>
+  <li><a>Franklin - 2913</a></li>
+  <li><a>Fraser - 2615</a></li>
+  <li><a>Fyshwick - 2609</a></li>
+  <li><a>Garran - 2605</a></li>
+  <li><a>Gilmore - 2905</a></li>
+  <li><a>Giralang - 2617</a></li>
+  <li><a>Gordon -  2906</a></li>
+  <li><a>Gowrie - 2904</a></li>
+  <li><a>Greenway - 2900</a></li>
+  <li><a>Griffith - 2603</a></li>
+  <li><a>Gungahlin - 2912</a></li>
+  <li><a>Hackett - 2602</a></li>
+  <li><a>Hall - 2618</a></li>
+  <li><a>Harrison - 2914</a></li>
+  <li><a>Hawker - 2614</a></li>
+  <li><a>Higgins - 2615</a></li>
+  <li><a>Holder - 2611</a></li>
+  <li><a>Holt - 2615</a></li>
+  <li><a>Hughes - 2605</a></li>
+  <li><a>Isaacs - 2607</a></li>
+  <li><a>Isabella Plains - 2905</a></li>
+  <li><a>Jacka - 2914</a></li>
+  <li><a>Kaleen - 2617</a></li>
+  <li><a>Kambah - 2902</a></li>
+  <li><a>Kingston - 2604</a></li>
+  <li><a>Latham - 2615</a></li>
+  <li><a>Lawson - 2617</a></li>
+  <li><a>Lynehem - 2602</a></li>
+  <li><a>Lyons - 2606</a></li>
+  <li><a>Macarthur - 2904</a></li>
+  <li><a>MacGregor - 2615</a></li>
+  <li><a>Macquarie - 2614</a></li>
+  <li><a>Manuka - 2603</a></li>
+  <li><a>Mawson - 2607</a></li>
+  <li><a>McKellar - 2617</a></li>
+  <li><a>Melba - 2615</a></li>
+  <li><a>Molonglo</a></li>
+  <li><a>Monash - 2904</a></li>
+  <li><a>Moncrieff - 2914</a></li>
+  <li><a>Narrabundah - 2604</a></li>
+  <li><a>Ngunnawal - 2913</a></li>
+  <li><a>Nicholls - 2913</a></li>
+  <li><a>North Dunlop - 2615</a></li>
+  <li><a>North Evatt - 2617</a></li>
+  <li><a>North Lyneham - 2602</a></li>
+  <li><a>O'Connor - 2602</a></li>
+  <li><a>O'Malley - 2606</a></li>
+  <li><a>Oaks Estate - 2620</a></li>
+  <li><a>Oxley - 2903</a></li>
+  <li><a>Page - 2614</a></li>
+  <li><a>Palmerston - 2913</a></li>
+  <li><a>Pearce - 2607</a></li>
+  <li><a>Phillip - 2606</a></li>
+  <li><a>Pialligo - 2609</a></li>
+  <li><a>Red Hill - 2603</a></li>
+  <li><a>Reid - 2612</a></li>
+  <li><a>Richardson - 2905</a></li>
+  <li><a>Rivett - 2611</a></li>
+  <li><a>Scullin - 2614</a></li>
+  <li><a>Spence - 2615</a></li>
+  <li><a>Stirling - 2611</a></li>
+  <li><a>Strathnairn - 2615</a></li>
+  <li><a>Taylor - 2913</a></li>
+  <li><a>Tharwa - 2620</a></li>
+  <li><a>Theodore - 2905</a></li>
+  <li><a>Throsby - 2914</a></li>
+  <li><a>Torrens - 2607</a></li>
+  <li><a>Turner - 2612</a></li>
+  <li><a>Wanniassa - 2903</a></li>
+  <li><a>Waramanga - 2611</a></li>
+  <li><a>Watson - 2602</a></li>
+  <li><a>Weetangera - 2615</a></li>
+  <li><a>Weston - 2611</a></li>
+  <li><a>Whitlam - 2611</a></li>
+  <li><a>Wright - 2611</a></li>
+  <li><a>Yarralumla - 2600</a></li>
+  
+
+
+
+
+
+      
+
+
+</ul>
+
+   
+          
+        </div>
+        <div id="storediv" class="cssanimation fadeInBottom" hidden>
+          
+HEY
+<br>
+<button style="margin-left:10%; height: 40px; width: 180px; background-color: orange;">GET DIRECTIONS</button>
+<button style="margin-left:10%; height: 40px; width: 180px; background-color: green;" onclick="startOrder()">START ORDER</button>
+
+
+        </div>
+      </div>
+   </div>
+</body>
+</section>
+
+</div>
+
+</div>
+
+
+<script>
+
+var ul = document.getElementById('myUL');
+ul.onclick = function(event) {
+    var target = getEventTarget(event);
+    console.log(target.innerHTML.slice(-4));
+    postcodeval = target.innerHTML.slice(-4);
+
+    store();
+
+};
+</script>
+
+</body>
+
+</html>
