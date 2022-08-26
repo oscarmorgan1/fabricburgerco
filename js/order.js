@@ -4,7 +4,8 @@ var cartUI
 var selectedStore = "FBC0001"
 var selectedItem = "Planino Burger"
 var totalToCreate;
-    var index = 1;
+    var index = 0;
+    var targetItem;
 
 
 console.log(sessionStorage.getItem("Order ID"))
@@ -26,14 +27,15 @@ function pullMenu(menuType) {
         console.log("burger")
 
         database.ref("stores/" + storeID + "/menu/active").on('value', displayMenuTotal);
+
         function displayMenuTotal(menu){
         console.log(menu.val())
         activeMenu = menu.val()
         console.log(activeMenu.length);
 
         totalToCreate = activeMenu.length;
-console.log(totalToCreate)
-console.log(index)
+        console.log(totalToCreate)
+        console.log(index)
         
         createItem()
     } 
@@ -48,9 +50,7 @@ function createItem() {
 
     if (index < totalToCreate) {
         //create div
-        createAndFill()      
-    } else if (index == totalToCreate) {
-       createAndFill()
+        create()      
     } else {
         console.log("called stack")
     }
@@ -59,48 +59,90 @@ function createItem() {
 }
 
 
-function createAndFill() {
+function create() {
     console.log(activeMenu[1])
     console.log("HELLO")
 
+   
+
+    database.ref("stores/" + storeID + "/menu/active/" + index).on('value', displayMenuItem);
+        function displayMenuItem(menu){
+            console.log(menu.val())
+            targetItem = menu.val()
+            console.log(targetItem)
+            fill()
+
+        }
+
+
+function fill() {
+    
+
     var itemsection = document.getElementById("items")
 
+
+    
     var newDIV = document.createElement('div');
     itemsection.appendChild(newDIV)
-    newDIV.className = "column-4 tile grow project-3"
-    // create elemements
+
+    if (index > 2) {
+        newDIV.className = "column-4 tile grow project-3"
+    } else {
+        newDIV.className = "column-4 tile grow project-3 top-row"
+    }
 
     var newImage = document.createElement('img');
     newDIV.appendChild(newImage)
     newImage.className = "image"
-    newImage.src = "/images/product_shots/burger.png"
 
+    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/image").on('value', displayImage);
+        function displayImage(image){
+            newImage.src = image.val()
+        }
+
+    
 
     var newTitle = document.createElement('h2');
     newDIV.appendChild(newTitle)
     newTitle.className = "item-title"
 
-    database.ref("stores/" + storeID + "/menu/active/" + index).on('value', displayMenuTotal);
-        function displayMenuTotal(menu){
-            console.log(menu.val())
-
-        }
-
-    newTitle.innerHTML = "BURGER TITLE"
+    newTitle.innerHTML = targetItem
 
     var newDescription = document.createElement('h2');
     newDIV.appendChild(newDescription)
     newDescription.className = "item-description"
-    newDescription.innerHTML = "Our most basic, simple and boring burger. Yet packs on falvour."
+
+
+    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/description").on('value', displayDescription);
+        function displayDescription(description){
+            newDescription.innerHTML = description.val()
+        }
 
     var newButton = document.createElement('button');
     newDIV.appendChild(newButton)
+    newButton.id = "productModal"
     newButton.className = "item-order"
-    newButton.innerHTML = "Order"
+    document.getElementById("productModal").onclick = productInfo(targetItem);
+    newButton.innerHTML = "+"
+
+
+    var newPrice = document.createElement('h5');
+    newDIV.appendChild(newPrice)
+    newPrice.className = "price"
+
+    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/price").on('value', displayPrice);
+        function displayPrice(price){
+            newPrice.innerHTML = price.val()
+        }
+        
+    newPrice.innerHTML = "$10"
     //update prices
     index = index + 1
     console.log(index)
     createItem()
+
+}
+    
 }
 
 function addtoCart() {
@@ -147,4 +189,9 @@ function updateCart() {
      }
 
 
+    }
+
+
+    function productInfo(productName) {
+        console.log(productName)
     }
