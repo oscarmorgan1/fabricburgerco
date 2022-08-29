@@ -6,6 +6,7 @@ var selectedItem = "Planino Burger"
 var totalToCreate;
     var index = 0;
     var targetItem;
+    var targetCategory;
 
 
 console.log(sessionStorage.getItem("Order ID"))
@@ -25,8 +26,9 @@ function pullMenu(menuType) {
     console.log("Pulling menu")
     if (menuType == "burger") {
         console.log("burger")
-
-        database.ref("stores/" + storeID + "/menu/active").on('value', displayMenuTotal);
+        targetCategory = "burgers"
+        console.log(targetCategory)
+        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/active").on('value', displayMenuTotal);
 
         function displayMenuTotal(menu){
         console.log(menu.val())
@@ -40,6 +42,8 @@ function pullMenu(menuType) {
         createItem()
     } 
 
+} else {
+    console.log("error")
 }
 
 
@@ -65,7 +69,7 @@ function create() {
 
    
 
-    database.ref("stores/" + storeID + "/menu/active/" + index).on('value', displayMenuItem);
+    database.ref("stores/" + storeID + "/menu/" + targetCategory + "/active/" + index).on('value', displayMenuItem);
         function displayMenuItem(menu){
             console.log(menu.val())
             targetItem = menu.val()
@@ -95,9 +99,10 @@ function fill() {
     newDIV.appendChild(newImage)
     newImage.className = "image"
 
-    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/image").on('value', displayImage);
+    database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + targetItem + "/image").on('value', displayImage);
         function displayImage(image){
             newImage.src = image.val()
+            console.log(image.val())
         }
 
     
@@ -113,7 +118,7 @@ function fill() {
     newDescription.className = "item-description"
 
 
-    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/description").on('value', displayDescription);
+    database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + targetItem + "/description").on('value', displayDescription);
         function displayDescription(description){
             newDescription.innerHTML = description.val()
         }
@@ -122,15 +127,24 @@ function fill() {
     newDIV.appendChild(newButton)
     newButton.id = "productModal"
     newButton.className = "item-order"
-    document.getElementById("productModal").onclick = productInfo(targetItem);
     newButton.innerHTML = "+"
 
+    newButton.addEventListener("click", productInfo.bind(null, targetItem));
+
+
+    // newButton.onclick = function(){
+    //     productInfo(targetItem)
+    //     console.log()
+    //   };
+
+
+    // newButton.onclick = productInfo()
 
     var newPrice = document.createElement('h5');
     newDIV.appendChild(newPrice)
     newPrice.className = "price"
 
-    database.ref("stores/" + storeID + "/menu/reference/" + targetItem + "/price").on('value', displayPrice);
+    database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + targetItem + "/price").on('value', displayPrice);
         function displayPrice(price){
             newPrice.innerHTML = price.val()
         }
@@ -145,18 +159,7 @@ function fill() {
     
 }
 
-function addtoCart() {
 
-    var cartTotal = cart.length
-
-    console.log(cartTotal)
-
-    cart.push(selectedItem)
-
-    console.log(cart)
-
-    updateCart()
-}
 
 
 function updateCart() {
@@ -194,4 +197,52 @@ function updateCart() {
 
     function productInfo(productName) {
         console.log(productName)
+        var modal = document.getElementById("product-modal");
+        modal.style.display = "block"
+        document.getElementById("product-info-title").innerHTML = productName
+        
+
+        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + productName + "/image").on('value', displayImage);
+        function displayImage(image){
+            document.getElementById("product-info-productshot").src = image.val()
+            
+        }
+
+        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + productName + "/description").on('value', displayDescription);
+        function displayDescription(description){
+            document.getElementById("product-info-description").innerHTML = description.val()
+        }
+
+        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + productName + "/price").on('value', displayPrice);
+        function displayPrice(price){
+            document.getElementById("product-info-price").innerHTML = price.val()
+        }
+        
+        document.getElementById("add-to-cart").addEventListener("click", addtoCart.bind(null, productName));
+    
     }
+
+
+    // function disappear(ID) {
+    //     alert(ID)
+    // }
+
+  
+
+// Get the button that opens the modal
+
+
+function addtoCart(cartItem) {
+
+
+    var cartTotal = cart.length
+
+    console.log(cartTotal)
+
+    cart.push(cartItem)
+
+    console.log(cart)
+
+    document.getElementById("item-modal").style.display = "none"
+    // updateCart()
+}

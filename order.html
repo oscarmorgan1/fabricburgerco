@@ -22,6 +22,9 @@
 firebaseinit()
 pullMenu("burger")
 
+document.getElementById("menu1").className("text-underlined:before")
+
+
     </script>
     <nav>
         <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
@@ -42,7 +45,7 @@ pullMenu("burger")
       <div class="page">
         <nav class="page__menu menu">
           <ul class="menu__list r-list">
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/burger.png"><a href="#0" class="menu__link r-link text-underlined">BURGERS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/burger.png"><a href="#0" id="menu1" class="menu__link r-link text-underlined">BURGERS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/desert.png"><a href="#0" class="menu__link r-link text-underlined">DESERTS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/drink.png"><a href="#0" class="menu__link r-link text-underlined">DRINKS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/extras.png"><a href="#0" class="menu__link r-link text-underlined">EXTRAS</a></li>
@@ -52,24 +55,40 @@ pullMenu("burger")
         </nav>
       </div>
 
-      <div id="itemmodal" class="item-modal">
+      <div id="product-modal" class="product-modal">
 
         <!-- Modal content -->
-        <div class="item-modal-content">
-          <div class="item-modal-header">
-            <span class="close">&times;</span>
-            <h2>Modal Header</h2>
+        <div  class="product-modal-content">
+          
+          <div class="product-info-container-info">			
+
+
+            <img class="product-info-productshot" id="product-info-productshot" src="/images/product_shots/crispy chicken aoli.png">
+            
           </div>
-          <div class="item-modal-body">
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
-          </div>
-          <div class="item-modal-footer">
-            <h3>Modal Footer</h3>
+          
+          <div class="product-info-container-main">
+            <header style="background-color:#df724a;color:#fff;">
+              <span onclick="document.getElementById('product-modal').style.display='none'" class="close-button topright">&times;</span>
+            </header>
+            <h1 class="product-info-title" id="product-info-title"></h1>
+            <h4 class="product-info-description" id="product-info-description">HEY</h4>
+            <h6 class="product-info-ingredients" id="product-info-description">Ingredients: </h6>
+            <h5 class="product-info-price" id="product-info-price">HEY</h5>
+            <!-- <textarea class="order-requests" name="paragraph_text" cols="50" rows="4"></textarea> -->
+            <button class="special-request">Have a special request?</button>
+            <br>
+        
+
+            <h5 id="add-to-cart" class="order-button">Add to cart</h5>
+
+            
           </div>
         </div>
       
       </div>
+    
+
 
       <section>
         <body>
@@ -135,18 +154,18 @@ var span = document.getElementsByClassName("close")[0];
 
 
 function launchProduct() {
-    itemmodal.style.display = "block";
+    modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  itemmodal.style.display = "none";
+  modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == itemmodal) {
-    itemmodal.style.display = "none";
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 }
            </script>

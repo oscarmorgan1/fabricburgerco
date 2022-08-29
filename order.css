@@ -204,7 +204,7 @@ body{
   overflow:scroll; 
 height:100%;
 max-height: 500px;
-  background-color: #white; }
+  background-color: #f6f6f6; }
   @media (min-width: 768px) {
     .container-info {
       float: left;
@@ -253,7 +253,7 @@ border-radius: 20px;
 }
 
 .project-3 {
-  background-color:#f8f8ff;
+  background-color:white;
   border-radius: 20px;
 
 }
@@ -499,3 +499,176 @@ filter: brightness(120%);
   float: left;
   margin-top: -70;
 }
+
+
+
+.product-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.product-modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-info-container-info {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: 490px;
+  background-color: #f6f6f6; }
+  @media (min-width: 768px) {
+    .product-info-container-info {
+      float: left;
+      /*position: fixed;*/
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 50%; } }
+
+
+
+.product-info-container-main {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: 490px;
+  background-color: #f8f8ff; }
+  @media (min-width: 768px) {
+    .product-info-container-main {
+      float: right;
+      /*position: fixed;*/
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 50%; } }
+
+
+.product-info-productshot {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+
+.product-info-title {
+  font-family: 'head';
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20%;
+}
+
+
+.product-info-description {
+  font-family: 'head';
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.product-info-ingredients {
+  font-family: 'head';
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.product-info-price {
+  font-family: 'head';
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.order-requests {
+  font-family: 'head';
+  margin-left: 30px;
+  width: 80%;
+
+}
+
+.special-request {
+  margin-left: 25px;
+  background-color: transparent;
+  border: transparent;
+}
+
+.close-button {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap
+}
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+.order-button {
+  background-color: #df724a; /* Green */
+  font-family: 'head';
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 30px;
+  background-image: '';
+}
+
