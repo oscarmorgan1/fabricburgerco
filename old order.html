@@ -51,12 +51,9 @@ pullMenu("burger")
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/extras.png"><a href="#0" class="menu__link r-link text-underlined">EXTRAS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="#0" class="menu__link r-link text-underlined">DEALS</a></li>
 
-            <li  hidden id="secretTile" class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="#0" class="menu__link r-link text-underlined">SECRET MENU</a></li>
           </ul>
         </nav>
       </div>
-
-      <div id="notif" class="notif">Item added to cart</div>
 
       <div id="product-modal" class="product-modal">
 
@@ -73,7 +70,7 @@ pullMenu("burger")
               <br>
               <textarea class="order-requests" name="paragraph_text" cols="50" rows="4"></textarea>
               <br>
-              <h5 id="add-request" class="order-button">Request</h5>
+              <h5 id="add-to-cart" class="order-button">Request</h5>
             </div>
           
           </div> 
@@ -143,10 +140,10 @@ pullMenu("burger")
              <h1 style="padding-left:20px;">My Cart</h1>
              
              <div class="order-item" id="cart">
-                <h1 hidden id="cart-empty">Cart Empty</h1>
+                <h1>Cart Empty</h1>
              </div>
-             <input type="text" class="coupon" placeholder="Enter coupons here" maxlength="6" id="couponField"> 
-             <button type="button" onClick="applyCoupon()" class="apply" value=" Apply " id="theButton"></button>
+             <input type="text" class="coupon" placeholder="Enter coupons here" maxlength="6" id="theInput"> 
+             <input type="button" class="apply" value=" Apply " id="theButton">  
 
              <div class="total">
                 <h1 class="subtotal">Subtotal:</h1>
