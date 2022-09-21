@@ -18,6 +18,27 @@ DEPENDENCES
   margin-top: var(--rListMarginTop, 0) !important;
   margin-bottom: var(--rListMarginBottom, 0) !important;
   list-style: var(--rListListStyle, none) !important;
+
+}
+@media only screen and (max-width: 600px) {
+  .r-list {
+    overflow-y: scroll;
+  }
+
+  .item-title {
+    font-size: medium;
+  }
+
+  .item-description {
+    font-size: xx-small;
+  }
+
+  .tile {
+    height: 1rem;
+  }
+  
+
+
 }
 
 
@@ -29,6 +50,7 @@ CORE STYLES
 
 .menu{
   --rLinkColor: var(--menuLinkColor, currentColor);
+  
 }
 
 .menu__link{

@@ -40,6 +40,7 @@
       
 <section style="padding-top: 5%;">
 <body>
+  <div id="split-screen">
    <div class="container-info" style="border-right: 2px solid; margin-right: -2 px">			
      <h1 id="banner-text" class="cssanimation sequence fadeInBottom"style="font-family: 'head'; text-align: center; font-size: 40px; padding-right: 20px; padding-top: 20%; padding-left:90px">How would you like to <br>experience Fabric?</h1>
    </div>
@@ -57,7 +58,7 @@
               </div>            
           </div>
 
-          <div id="deliverey" style="height: 100px" class="grow service col-4-md text-center block2">
+          <div id="deliverey" onclick="delivery()" style="height: 100px" class="grow service col-4-md text-center block2">
             <div id="col-1">
                 <i class="icons fa-solid fa-truck fa-5x"></i>
               </div>
@@ -81,13 +82,13 @@
           </div>
 
           <div id="searchdiv" class="cssanimation sequence fadeInBottom searchdiv" hidden>
-          <b class="find-title">Find your closest store</b>
+          <b id="find-store" class="find-title">Find your closest store</b>
           <br>
        
           <input type="text" id="myInput" class="searchBox" style="margin-top:5%; margin-left:5%;" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
           <br>
           <br>
-          <a href="google.com" style="margin-left:5%; background-attachment: fixed;">Not showing? Select from all stores here.</a>
+          <a onclick="allStores()" style="margin-left:5%; background-attachment: fixed;">Not showing? Select from all stores here.</a>
 <ul hidden id="myUL" style="margin-top:-3%; margin-left:5%; z-index: 100">
 
   <li><a>Acton - 2601</a></li>
@@ -233,6 +234,21 @@ HEY
 </body>
 </section>
 
+</div>
+
+</div>
+
+
+<div hidden class="store-tiles">
+  <div id="store1" hidden class="card cssdownanimation sequence fadeInBottom">ONE</div>
+  <div id="store2" hidden class="card cssdownanimation sequence fadeInBottom">TWO</div>
+  <div id="store3" hidden class="card cssdownanimation sequence fadeInBottom">THREE</div>
+  <div id="store4" hidden class="card cssdownanimation sequence fadeInBottom">FOUR</div>
+  <div id="store5" hidden class="card cssdownanimation sequence fadeInBottom">FIVE</div>
+  <div id="store6" hidden class="card cssdownanimation sequence fadeInBottom">SIX</div>
+  <div id="store7" hidden class="card cssdownanimation sequence fadeInBottom">SEVEN</div>
+  <div id="store8" hidden class="card cssdownanimation sequence fadeInBottom">EIGHT</div>
+  <div id="store9" hidden class="card cssdownanimation sequence fadeInBottom">FRANCHISE</div>
 </div>
 
 </div>

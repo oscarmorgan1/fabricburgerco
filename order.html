@@ -20,7 +20,9 @@
     <script>
 
 firebaseinit()
-pullMenu("burger")
+
+pullMenu(location.search)
+
 
 // document.getElementById("menu1").className("text-underlined:before")
 
@@ -45,9 +47,9 @@ pullMenu("burger")
       <div class="page">
         <nav class="page__menu menu">
           <ul class="menu__list r-list">
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/burger.png"><a href="#0" id="menu1" class="menu__link r-link text-underlined">BURGERS</a></li>
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/desert.png"><a href="#0" class="menu__link r-link text-underlined">DESERTS</a></li>
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/drink.png"><a href="#0" class="menu__link r-link text-underlined">DRINKS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/burger.png"><a href="?/burgers" id="menu1" class="menu__link r-link text-underlined">BURGERS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/desert.png"><a href="?/deserts" class="menu__link r-link text-underlined">DESERTS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/drink.png"><a href="?/drinks" class="menu__link r-link text-underlined">DRINKS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/extras.png"><a href="#0" class="menu__link r-link text-underlined">EXTRAS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="#0" class="menu__link r-link text-underlined">DEALS</a></li>
 
@@ -149,13 +151,17 @@ pullMenu("burger")
              <button type="button" onClick="applyCoupon()" class="apply" value=" Apply " id="theButton"></button>
 
              <div class="total">
-                <h1 class="subtotal">Subtotal:</h1>
-                <h1 class="discount">Discount:</h1>
-                <h1 class="totalprice">Total:</h1>
+                <h1 id="subtotal-price" class="subtotal">Subtotal:</h1>
+                <h1 id="discount-price" class="discount">Discount:</h1>
+                <h1 id="total-price" class="totalprice">Total:</h1>
              </div>
 
              <button class="checkout">CHECKOUT</button>
            </div>
+
+
+
+         
            <script>
 
 
@@ -187,6 +193,12 @@ window.onclick = function(event) {
   }
 }
            </script>
+
+
+      <footer class="footer-universal">
+        <div>hi</div>
+      </footer>
+
         </body>
 
         

@@ -13,45 +13,124 @@ var totalToCreate;
     var tempProduct; 
     var pricingIndex = 0;
     var unitPrice;
-    var cartPrice;
+    var cartPrice = 0;
+    var discount = 0;
+    var cartTarget;
 
+var burgers = [];
+var deserts = [];
+var drinks = [];
+var extras = [];
+var deals = [];
+var menuSections = ["burgers", "deserts", "drinks", "extras", "deals"]
+var menuArchiveIndex = 0
 
-console.log(sessionStorage.getItem("Order ID"))
-console.log(sessionStorage.getItem("Store ID"))
-console.log(sessionStorage.getItem("Store UID"))
+// console.log(sessionStorage.getItem("Order ID"))
+// console.log(sessionStorage.getItem("Store ID"))
+// console.log(sessionStorage.getItem("Store UID"))
 
 var orderID = sessionStorage.getItem("Order ID")
 var storeID = sessionStorage.getItem("Store ID")
 var storeUID = sessionStorage.getItem("Store UID")
 var activeMenu = [];
 
-console.log(cart)
+// console.log(cart)
 
 
+function getMenuArchive() {
+
+
+    if (menuArchiveIndex < menuSections.length) {
+
+
+        database.ref("stores/" + storeID + "/menu/" + menuSections[menuArchiveIndex] + "/active").on('value', getMenu);
+
+
+        function getMenu(menu){
+
+
+            // console.log(menu.val())
+            
+            if (menuSections[menuArchiveIndex] == "burgers") {
+                burgers = menu.val()
+                logMenu()
+            } else if (menuSections[menuArchiveIndex] == "deserts") {
+                deserts = menu.val()
+                logMenu()
+            } else if (menuSections[menuArchiveIndex] == "drinks") {
+                drinks = menu.val()
+                logMenu()
+            } else if (menuSections[menuArchiveIndex] == "extras") {
+                extras = menu.val()
+                logMenu()
+            } else if (menuSections[menuArchiveIndex] == "deals") {
+                deals = menu.val()
+                logMenu()
+            }
+    
+            menuArchiveIndex = menuArchiveIndex + 1
+            getMenuArchive()
+        } 
+    } else {
+        console.log("Got all archive data")
+        pullWebCart()
+    }
+
+    
+}
+
+
+function logMenu() {
+    // console.log(burgers)
+    // console.log(deserts)
+    // console.log(drinks)
+    // console.log(extras)
+    // console.log(deals)
+}
 
 function pullMenu(menuType) {
-    console.log("Pulling menu")
-    if (menuType == "burger") {
+    
+    getMenuArchive()
+   
+
+    // console.log("Pulling menu")
+    if (menuType == "?/burgers") {
         console.log("burger")
         targetCategory = "burgers"
-        console.log(targetCategory)
+        
+    } else if (menuType == "?/drinks") {
+        console.log("drinks")
+        targetCategory = "drinks"
+    } else if (menuType == "?/deserts") {
+        console.log("deserts")
+        targetCategory = "deserts"
+    } else {
+        // console.log("burger")
+        targetCategory = "burgers"
+    }
+
+    // console.log(targetCategory)
         database.ref("stores/" + storeID + "/menu/" + targetCategory + "/active").on('value', displayMenuTotal);
 
-        function displayMenuTotal(menu){
-        console.log(menu.val())
-        activeMenu = menu.val()
-        console.log(activeMenu.length);
 
-        totalToCreate = activeMenu.length;
-        console.log(totalToCreate)
-        console.log(index)
-        
-        createItem()
-    } 
+function displayMenuTotal(menu){
 
-} else {
-    console.log("error")
-}
+    
+
+    // console.log(menu.val())
+    activeMenu = menu.val()
+    // console.log(activeMenu.length);
+
+    totalToCreate = activeMenu.length;
+    // console.log(totalToCreate)
+    // console.log(index)
+    
+    createItem()
+
+} 
+
+
+
 
 
 
@@ -63,7 +142,7 @@ function createItem() {
         //create div
         create()      
     } else {
-        console.log("called stack")
+        // console.log("called stack")
     }
 
    
@@ -71,16 +150,16 @@ function createItem() {
 
 
 function create() {
-    console.log(activeMenu[1])
-    console.log("HELLO")
+    // console.log(activeMenu[1])
+    // console.log("HELLO")
 
    
 
     database.ref("stores/" + storeID + "/menu/" + targetCategory + "/active/" + index).on('value', displayMenuItem);
         function displayMenuItem(menu){
-            console.log(menu.val())
+            // console.log(menu.val())
             targetItem = menu.val()
-            console.log(targetItem)
+            // console.log(targetItem)
             fill()
 
         }
@@ -109,7 +188,7 @@ function fill() {
     database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + targetItem + "/image").on('value', displayImage);
         function displayImage(image){
             newImage.src = image.val()
-            console.log(image.val())
+            // console.log(image.val())
         }
 
     
@@ -159,7 +238,7 @@ function fill() {
     newPrice.innerHTML = "$10"
     //update prices
     index = index + 1
-    console.log(index)
+    // console.log(index)
     createItem()
 
 }
@@ -229,9 +308,8 @@ function fill() {
         function displayIngredients(ingredients){
             document.getElementById("product-info-ingredients").innerHTML = "Ingredients: " + ingredients.val()
         }
-        console.log(productName + " before listener is added")
         document.getElementById("add-to-cart").addEventListener("click", addtoCart.bind(null, productName));
-        console.log(productName + " after listener is added")
+   
         tempProduct = productName
     
     }
@@ -267,7 +345,11 @@ function addtoCart(cartItem) {
     document.getElementById("product-modal").style.display = "none"
     document.getElementById("notif").classList.toggle('visible');
 
-    getCart()
+    firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).set({
+        cart,
+          });
+
+        //   pullWebCart()
 }
 
 
@@ -276,37 +358,63 @@ function getCart() {
     
     
     totalItems = cart.length
+    creationIndex = 0
     console.log(totalItems)
-    
+    console.log(creationIndex)
+    // console.log(totalItems)
+    pricingIndex = 0
+    var node = document.getElementById("cart")
+
+    while (node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+    }
     updateCart()
 
+    
 
 }
 
 function updateCart() {
 
+   
 
-
+    console.log(creationIndex, totalItems)
     if (creationIndex < totalItems) {
         //create div
-        console.log("More cart items exist...")     
+     console.log("the creation index is" + creationIndex)
+     console.log(cart[creationIndex])
+
+        if (burgers.includes(cart[creationIndex]) == true) {
+            console.log("It's a burger")
+            cartTarget = "burgers"
+        } else if (drinks.includes(cart[creationIndex]) == true) {
+            console.log("It's a drink")
+            cartTarget = "drinks"
+        } else if (deserts.includes(cart[creationIndex]) == true) {
+            console.log("It's a desert")
+            cartTarget = "deserts"
+        } else {
+            console.log("Status Unkown")
+        }
+        console.log(cartTarget)
+        
+        console.log("Updating cart - More items need to be created")     
 
         var newItem = document.createElement('h2');
     
         document.getElementById("cart").appendChild(newItem)
         newItem.className = "cart-box"
     
-
-        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + cart[creationIndex] + "/image").on('value', displayImage);
-        function displayImage(image){
-
-
-            var newImage = document.createElement('img');
+        var newImage = document.createElement('img');
         newItem.appendChild(newImage)
-        newImage.src = image.val()
+        newImage.src = "/images/product_shots/burger.png"
         newImage.classList = "cart-image"
 
+        database.ref("stores/" + storeID + "/menu/" + cartTarget + "/reference/" + cart[creationIndex] + "/image").on('value', displayImage);
+        function displayImage(image){
 
+            newImage.src = image.val()
+        
             
         }
 
@@ -314,7 +422,6 @@ function updateCart() {
         newItem.appendChild(newItemDelete)
         newItemDelete.innerHTML = "x"
         newItemDelete.id = "cardID-" + cart.length
-        console.log("the id is" + newItem.id.value)
         newItemDelete.classList = "cart-item-delete"
         newItemDelete.addEventListener("click", deleteItem.bind(null, cart.length - 1));
     
@@ -330,49 +437,83 @@ function updateCart() {
         creationIndex = creationIndex + 1
         console.log(creationIndex)
         updateCart()
-    } else if (creationIndex + 1 == totalItems){
-        console.log("No more cart items exist...")   
+    } else if (creationIndex >= totalItems){
+        console.log("All items created")   
     } else {
-        console.log("error")
+        console.log("Cart upgrade successful: Cart Index's are equal.")
     }
 
 
-    firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).set({
-        cart,
-          });
+    
 
-upgradePricing()
+         
+        // pullWebCart()
     // setTimeout(function(){ document.getElementById("notif").classList.toggle('visible'); }, 5000);
 }
 
 
+function pullWebCart() {
+    database.ref("stores/" + storeID + "/orders/live/" + orderID + "/cart").on('value', getLiveCart)
+    function getLiveCart(liveCart){
+       
+        // console.log(liveCart.val())
+        // console.log(parseInt(price.val()))
+        if (liveCart.val() == null) {
+            console.log("A web cart was not found for this order ID")
+            console.log(cart)
+        } else {
+            cart = liveCart.val()
+            console.log("WARNING! A web cart was found for this order ID")
+            console.log(cart)
+            getCart()
+            // console.log(liveCart.val())
+            // console.log("edhfbseiuyrgfuesrgfuterg" + cart)
+            // getCart()
+            
+        }
+    }
+}
 function upgradePricing() {
 
-
-    
-    console.log("length" + cart.length)
+    console.log("THE PRICING INDEX IS " + pricingIndex)
+    // console.log("length" + cart.length)
     if (pricingIndex < cart.length) {
-        console.log("its greater")
+        // console.log("its greater")
 
         database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + cart[pricingIndex] + "/price").on('value', displayPrice);
         function displayPrice(price){
             unitPrice = parseFloat(price.val())
-            console.log(unitPrice)
+            // console.log("The item costs: " + unitPrice)
+            cartPrice += unitPrice
             // console.log(parseInt(price.val()))
         }
 
         pricingIndex = pricingIndex + 1
-        cartPrice + unitPrice
-        console.log(unitPrice)
-        console.log(cartPrice)
-        console.log(pricingIndex)
+
+        document.getElementById("subtotal-price").innerHTML = "SUBTOTAL: $" + cartPrice
+
+        if (discount > 0) {
+            cartPrice -= discount
+            console.log(cartPrice)
+        }
+        document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + discount
+        document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
+        
+    
+        // console.log(unitPrice)
+        // console.log(cartPrice)
+        // console.log(pricingIndex)
     
         upgradePricing()
 
+    } else if (pricingIndex == cart.length) {
+        console.log("Price upgrade successful: Pricing Index's are equal.")
+        // console.log(cartPrice)
     } else {
-        console.log("failure to return")
+        console.log("Price upgrade error: Pricing Index's are greater then cart total.")
+        // console.log(cartPrice)
     }
-    console.log(pricingIndex + "data.track().pass[data391]" + totalItems)
+    // console.log(pricingIndex + "data.track().pass[data391]" + totalItems)
 
 }
 function applyCoupon() {
@@ -389,10 +530,9 @@ function applyCoupon() {
 
 
 function deleteItem(row) {
-    console.log(row)
+    // console.log(row)
     cart.splice(row, 1)
-    console.log(cart)
-    alert(row)
+    // console.log(cart)
     creationIndex = 0
 
 
@@ -407,3 +547,11 @@ function deleteItem(row) {
 
 
 }
+
+
+
+function toggleMenu(type) {
+    menuType = type
+    targetCategory = type
+}
+

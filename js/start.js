@@ -38,6 +38,45 @@ function pickup() {
 
 }
 
+function delivery() {
+    console.log("picked")
+
+    var pickuptile = document.getElementById("pickup")
+    
+    var delivereytile = document.getElementById("deliverey")
+    var savedtile = document.getElementById("saved")
+    var headertext = document.getElementById("banner-text")
+    var searchbox = document.getElementById("searchdiv")
+    var findstore = document.getElementById("find-store")
+    var op = 1;  // initial opacity
+
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            pickuptile.style.display = 'none';
+            delivereytile.style.display = 'none';
+            savedtile.style.display = 'none';
+            savedtile.style.display = 'none';
+            headertext.style.display = 'none';
+            headertext.innerHTML = "Where should we bring <br> the Fabric experience?"
+            findstore.innerHTML = "Enter your address"
+            headertext.style.display = 'block';
+            searchbox.style.display = 'block';
+
+        }
+        pickuptile.style.opacity = op;
+        pickuptile.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        delivereytile.style.opacity = op;
+        delivereytile.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        savedtile.style.opacity = op;
+        savedtile.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        headertext.style.opacity = op;
+        headertext.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 30);
+
+}
+
 function postcodePicked() {
     var searchdiv = document.getElementById("searchdiv")
     var storediv = document.getElementById("storediv")
@@ -49,9 +88,6 @@ function postcodePicked() {
         storediv.style.display = 'block';
         headertext.innerHTML = "Fabric Burger Co."
       }, 500);
-      
-    
-   
 }
 
 
@@ -257,3 +293,36 @@ var StoreUID = sessionStorage.setItem("Store UID", storeUID)
     
 }
 
+function allStores() {
+
+
+    var searchdiv = document.getElementById("searchdiv")
+    var storediv = document.getElementById("storediv")
+    var headertext = document.getElementById("banner-text")
+    var splitscreen = document.getElementById("split-screen")
+    var storetiles = document.getElementById("store1")
+    console.log("gg")
+    searchdiv.className = 'cssdownanimation sequence fadeOutBottom searchdiv'
+
+    setTimeout(function() {
+        searchdiv.style.display = 'none';
+        
+        headertext.style.display = 'none';
+        splitscreen.style.display = 'none';
+        document.getElementById("store1").style.display = 'block'
+        document.getElementById("store2").style.display = 'block'
+        document.getElementById("store3").style.display = 'block'
+        document.getElementById("store4").style.display = 'block'
+        document.getElementById("store5").style.display = 'block'
+        document.getElementById("store6").style.display = 'block'
+        document.getElementById("store7").style.display = 'block'
+        document.getElementById("store8").style.display = 'block'
+        document.getElementById("store9").style.display = 'block'
+
+
+      }, 500);
+    
+
+
+        
+    }

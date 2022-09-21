@@ -75,6 +75,19 @@ pullMenu("burger")
           
           </div> 
 
+
+
+          function getCart() {
+            console.log("UIGPIUYGBPIUYGBIPUYGBPIG")
+            database.ref("stores/" + storeID + "/orders/live/" + orderID + "/cart").on('value', displayCart);
+        
+        alert("stores/" + storeID + "/orders/live/" + orderID + "/cart")
+        function displayCart(c){
+            cart = c.val()
+            alert(cart)
+        } 
+        }
+
           <div class="product-info-container-info">			
 
 
