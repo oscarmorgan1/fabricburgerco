@@ -359,6 +359,7 @@ function getCart() {
     
     totalItems = cart.length
     creationIndex = 0
+    cartPrice = 0
     console.log(totalItems)
     console.log(creationIndex)
     // console.log(totalItems)
@@ -439,6 +440,7 @@ function updateCart() {
         updateCart()
     } else if (creationIndex >= totalItems){
         console.log("All items created")   
+        upgradePricing()
     } else {
         console.log("Cart upgrade successful: Cart Index's are equal.")
     }
@@ -475,6 +477,7 @@ function pullWebCart() {
 }
 function upgradePricing() {
 
+
     console.log("THE PRICING INDEX IS " + pricingIndex)
     // console.log("length" + cart.length)
     if (pricingIndex < cart.length) {
@@ -496,6 +499,15 @@ function upgradePricing() {
             cartPrice -= discount
             console.log(cartPrice)
         }
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 2,      
+            maximumFractionDigits: 2,
+         });
+         
+         console.log(formatter.format(cartPrice)); 
+         
+
         document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + discount
         document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
         
@@ -555,3 +567,6 @@ function toggleMenu(type) {
     targetCategory = type
 }
 
+function initiateCheckoutProcess() {
+    window.open("/checkout.html?" + orderID, '_self')
+}

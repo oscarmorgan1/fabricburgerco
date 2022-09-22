@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="account.css">
+    <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
+    <!-- <script src="/js/stahrt.js"></script> -->
+    <script src="/js/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+     <title>Fabric Burger Co.</title>
+</head>
+
+<script>
+
+
+function dashboard() {
+document.getElementById("dashboard").style.display = 'block'
+document.getElementById("account").style.display = 'none'
+document.getElementById("orders").style.display = 'none'
+document.getElementById("account-nav").style.backgroundColor = "#efefee";
+document.getElementById("orders-nav").style.backgroundColor = "#efefee";
+document.getElementById("dashboard-nav").style.backgroundColor = "#df7c43";
+}
+
+function account() {
+document.getElementById("dashboard").style.display = 'none'
+document.getElementById("orders").style.display = 'none'
+document.getElementById("account").style.display = 'block'
+document.getElementById("account-nav").style.backgroundColor = "#df7c43";
+document.getElementById("orders-nav").style.backgroundColor = "#efefee";
+document.getElementById("dashboard-nav").style.backgroundColor = "#efefee";
+}
+
+function orders() {
+document.getElementById("orders-nav").style.backgroundColor = "#df7c43";
+document.getElementById("account-nav").style.backgroundColor = "#efefee";
+document.getElementById("dashboard-nav").style.backgroundColor = "#efefee";
+document.getElementById("dashboard").style.display = 'none'
+document.getElementById("account").style.display = 'none'
+document.getElementById("orders").style.display = 'block'
+
+}
+
+function quickOrders() {
+
+}
+
+
+function pageLoad() {
+
+  setTimeout(function() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("page-content").style.display = "block";
+}, 2000);
+
+
+
+}
+
+pageLoad()
+</script>
+<body>
+    
+
+    <nav>
+        <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
+        <a class="titles" href="">Home</a>
+        <img class="logo" src="/images/logo.png" >
+        <a class="titles" href="">Order</a>
+        <div class="dropdown" class="nav-icons" src="/images/search.png">
+            <i class="fa-solid fa-user dropbtn"></i>
+            <div class="dropdown-content">
+              <a id="Name" href="#">WELCOME, OSCAR</a>
+              <a id="Account" href="login.html">My Account</a>
+              <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
+            </div>
+          </div>
+
+
+          
+      </nav>
+
+      <img src="images/burger-loader.gif" id="loader" class="loader-gif"/>
+      
+      
+
+      <section>
+        <body>
+          <div hidden id="page-content" class="animate-bottom">
+           <div class="container-info">			
+      
+             <img class="user-profile-shot" id="product-info-productshot" src="/images/product_shots/crispy chicken aoli.png">
+             <h2 class="user-name">Welcome, Oscar!</h2>
+             <h4 class="user-join">Member since 2022</h4>
+
+             <button id="dashboard-nav" class="menu-button" onclick="dashboard()"><i class="fa-solid fa-gauge"></i> Dashboard</button>
+             <button id="account-nav" class="menu-button" onclick="account()"><i class="fa-solid fa-circle-user"></i> My Account</button>
+             <button id="orders-nav" class="menu-button" onclick="orders()"><i class="fa-solid fa-bag-shopping"></i> Orders</button>
+             <button id="quick-orders-nav" class="menu-button" onclick="quickOrders()"><i class="fa-solid fa-star"></i> Quick Order</button>
+
+             <br>
+             <br>
+             <br>
+             <button class="log-out">Log out</button>
+           </div>
+           <div class="container-main">
+
+             <div id="dashboard">
+              <div class="rewards-banner">
+                <section>
+                  <body>
+                     <div class="banner-container-info">			
+                      <div class="total-points">500</div>
+                      <div class="total-points-text">Fabric Points</div>
+                     </div>
+                     <div class="banner-container-main">
+                       <img class="banner-image" src="/images/product_shots/crispy chicken aoli.png">
+                     </div>
+                  </body>
+                  </section>
+
+              </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+              <h3 class="dashboard-title">Quick actions</h3>
+
+
+
+
+              <div class="quick-glance">
+
+                
+      
+              <div class="row">
+                <div class="quick-column" style="background-color:#eef0ef;">
+                       <div class="quick-container-info">			
+                        <h2 class="quick-title-text">Manage account</h2>
+                        <p class="quick-description-text">View and edit your account settings.</p>
+                       </div>
+                       <div class="quick-container-main">
+                        <i class="fa-solid fa-arrow-right quick-arrow"></i>
+                       </div>
+                </div>
+                <div class="quick-column" style="background-color:#eef0ef;">
+                  <div class="quick-container-info">			
+                    <h2 class="quick-title-text">Order history</h2>
+                    <p class="quick-description-text">See past order summarys.</p>
+                   </div>
+                   <div class="quick-container-main">
+                    <i class="fa-solid fa-arrow-right quick-arrow"></i>
+                   </div>
+                </div>
+                <div class="quick-column" style="background-color:#eef0ef;">
+                  <div class="quick-container-info">			
+                    <h2 class="quick-title-text">Order food</h2>
+                    <p class="quick-description-text">Order all your favourites now.</p>
+                   </div>
+                   <div class="quick-container-main">
+                    <i class="fa-solid fa-arrow-right quick-arrow"></i>
+                   </div>
+                </div>
+              </div>
+              
+    
+                             
+              </div>
+             
+              
+                            <h3 class="dashboard-title">Your account at a glance</h3>
+              
+                            <div class="account-glance">
+
+                              <div class="row">
+                                <div class="account-column" style="background-color:#eef0ef;">
+                                  <div class="account-container-info">			                 
+                                    <h2 class="account-value-text">Planino</h2>
+                                  </div>
+                                  <div class="account-container-main">
+                                    <i class="fa-solid fa-burger fa-5x faicon"></i>
+                                  </div>
+                                  <h2 class="account-title-text">Most ordered burger</h2>
+                                  <p class="account-description-text">Over the lifetime of your account, this burger seems to be your favourite.</p>
+                                </div>
+                                <div class="account-column" style="background-color:#eef0ef;">
+                                  <div class="account-container-info">			                 
+                                    <h2 class="account-value-text">Chips</h2>
+                                  </div>
+                                  <div class="account-container-main">
+                                    <i class="fa-solid fa-cart-plus fa-5x faicon"></i>
+                                  </div>
+                                  <h2 class="account-title-text">Most common add-on</h2>
+                                  <p class="account-description-text">When ordering a delicious burger, you most often get this side.</p>
+                                </div>
+                                <div class="account-column" style="background-color:#eef0ef;">
+                                  <div class="account-container-info">			                 
+                                    <h2 class="account-value-text">24</h2>
+                                  </div>
+                                  <div class="account-container-main">
+                                    <i class="fa-solid fa-tree fa-5x faicon"></i>
+                                  </div>
+                                  <h2 class="account-title-text">Trees planted</h2>
+                                  <p class="account-description-text">Collectively, Fabric Burger Co. As a result of checkout donations.</p>
+                                </div>
+                              </div>
+                              
+                           
+                            </div>
+           
+           </div>
+           <div hidden class="account" id="account">
+            HELLO
+          </div>
+
+          <div hidden class="orders" id="orders">
+            HELLO
+          </div>
+
+           </div>
+           
+          </div>
+        </body>
+        </section>
+        
+        
+<script>
+  firebaseinit()
+</script>
+
+
+
+<script>
+
+
+
+
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+      
+
+</body>
+
+</html>

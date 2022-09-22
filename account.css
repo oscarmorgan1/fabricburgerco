@@ -1,0 +1,512 @@
+.container-info {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  background-color: #f6f6f6; }
+  @media (min-width: 768px) {
+    .container-info {
+      float: left;
+      /*position: fixed;*/
+      left: 0;
+      top: 0;
+      height: 10px;
+      width: 25%; } }
+
+
+
+.container-main {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  background-color: #f8f8ff; }
+  @media (min-width: 768px) {
+    .container-main {
+      float: right;
+      /*position: fixed;*/
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 75%; } }
+
+
+
+
+
+
+
+.user-profile-shot {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+
+.user-name {
+  text-align: center;
+  font-family: 'head';
+}
+
+.user-join {
+  text-align: center;
+  font-family: 'head';
+  font-size: smaller;
+  margin-bottom: 40px;
+}
+
+.menu-button {
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 5%;
+  width: 80%;
+  font-family: 'head';
+  margin-top: 3%;
+  text-align: left;
+  border: 0;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+}
+
+.menu-button:hover {
+  background-color: #df7c43;
+  transition: all 0.4s ease;
+  transform: scale(1.01)
+}
+
+
+
+.log-out {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 5%;
+  width: 80%;
+  font-family: 'head';
+  margin-top: 3%;
+  border: 0;
+  background-color: #df7c43;
+  text-align: center;
+}
+.fa-solid {
+  padding-right: 10px;
+  
+}
+
+
+
+.wrap {
+   overflow: hidden;
+   margin: 10px;
+}
+.box {
+   float: left;
+   position: relative;
+   width: 33%;
+   padding-bottom: 20%;
+
+}
+.boxInner {
+   position: absolute;
+   left: 10px;
+   right: 10px;
+   top: 10px;
+   bottom: 10px;
+   overflow: hidden;
+   height: 60%;
+}
+.boxInner img {
+   width: 100%;
+}
+.boxInner .titleBox {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin-bottom: -50px;
+   background: #000;
+   background: rgba(0, 0, 0, 0.5);
+   color: #FFF;
+   padding: 10px;
+   text-align: center;
+   -webkit-transition: all 0.3s ease-out;
+   -moz-transition: all 0.3s ease-out;
+   -o-transition: all 0.3s ease-out;
+   transition: all 0.3s ease-out;
+}
+body.no-touch .boxInner:hover .titleBox, body.touch .boxInner.touchFocus .titleBox {
+   margin-bottom: 0;
+}
+@media only screen and (max-width : 480px) {
+   /* Smartphone view: 1 tile */
+   .box {
+      width: 100%;
+      padding-bottom: 100%;
+   }
+}
+@media only screen and (max-width : 650px) and (min-width : 481px) {
+   /* Tablet view: 2 tiles */
+   .box {
+      width: 50%;
+      padding-bottom: 50%;
+   }
+}
+@media only screen and (max-width : 1050px) and (min-width : 651px) {
+   /* Small desktop / ipad view: 3 tiles */
+   .box {
+      width: 33.3%;
+      padding-bottom: 33.3%;
+   }
+}
+@media only screen and (max-width : 1290px) and (min-width : 1051px) {
+   /* Medium desktop: 4 tiles */
+   .box {
+      width: 25%;
+      padding-bottom: 25%;
+   }
+}
+
+.box-title {
+  vertical-align: bottom;
+  position: relative;
+  font-family: 'head';
+
+  text-align: left;
+}
+
+
+    .tile-container-info {
+      float: left;
+      /*position: fixed;*/
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 34%; 
+
+      
+      } 
+
+
+
+
+    .tile-container-main {
+      float: right;
+      /*position: fixed;*/
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 66%; 
+
+      margin-top: 40px;
+    } 
+
+
+
+
+.box-title-text {
+  vertical-align: bottom;
+  position: relative;
+  font-family: 'head';
+font-size: medium;
+  text-align: left;
+}
+
+.box-description-text {
+  vertical-align: bottom;
+  position: relative;
+  font-family: 'head';
+
+  text-align: left;
+  font-size: x-small;
+}
+
+.rewards-banner {
+  margin-top: 3%;
+  height: 40%;
+  font-family: 'head';
+  border: #df7c43;
+  padding: 10px;
+  border-color: #df7c43;
+
+  width: 95%;
+  margin: 20px;
+  height: auto;
+}
+
+.total-points {
+
+font-family: 'head';
+font-size: 4rem;
+}   
+
+.total-points-text {
+  font-family: 'head';
+}
+
+.banner-image {
+
+padding: 10px;
+  vertical-align: middle;
+  float: right;
+  width: 25%;
+}
+
+
+
+
+    .banner-container-info {
+      float: left;
+      /*position: fixed;*/
+      left: 0;
+      top: 0;
+      height: 17vh;
+      background-color: hsla(0, 100%, 90%, 0.3);;
+      width: 50%;
+    padding: 20px;
+    }
+
+
+
+
+    .banner-container-main {
+      float: right;
+      /*position: fixed;*/
+      right: 0;
+      top: 0;
+      height: 17vh;
+  
+      background-color: hsla(0, 100%, 90%, 0.3);;
+      width: 50%; } 
+
+
+
+.rewards-split {
+
+  background-color: hsla(0, 100%, 90%, 0.3);;
+}
+
+
+.dashboard-title {
+  font-family: 'head';
+  margin-top: 50px;
+  padding-left: 30px;
+}
+
+
+
+  .quick-glance {
+    margin-left: 30px;
+  }
+
+  .account-glance {
+    margin-left: 30px;
+  }
+
+
+
+
+
+
+.quick-title-text {
+  font-family: 'head';
+  font-size: large;
+}
+
+.quick-description-text {
+  font-family: 'head';
+  font-size: x-small;
+}
+
+
+.account-value-text {
+  font-family: 'head';
+  font-size: x-large;
+}
+
+.account-title-text {
+  font-family: 'head';
+  font-size: small;
+  padding-top: 40px;
+}
+
+.account-description-text {
+  font-family: 'head';
+  font-size: x-small;
+  padding-top: 30px;
+}
+
+
+.btnglance {
+  color:#000000;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.quick-column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  margin-right: 20px;
+  height: 30%; /* Should be removed. Only for demonstration */
+}
+
+.account-column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  margin-right: 20px;
+  height: 200px; /* Should be removed. Only for demonstration */
+}
+
+.account-column:hover {
+  transition: all 0.4s ease;
+  transform: scale(1.01)
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .quick-column {
+    width: 100%;
+  }
+  .account-column {
+    width: 100%;
+  }
+}
+
+
+    .quick-container-info {
+      float: left;
+      /*position: fixed;*/
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 80%; } 
+
+
+
+    .quick-container-main {
+      float: right;
+      /*position: fixed;*/
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 20%; } 
+
+
+
+      .account-container-info {
+        float: left;
+        /*position: fixed;*/
+        left: 0;
+        top: 0;
+        height: auto;
+        width: 70%; } 
+  
+  
+  
+      .account-container-main {
+        float: right;
+        /*position: fixed;*/
+        right: 0;
+        top: 0;
+        height: auto;
+        width: 20%; } 
+
+      .quick-arrow {
+        transition: all 0.4s ease;
+        margin-top: 30px;
+        margin-left: 10px;
+      }
+
+
+      .quick-arrow:hover {
+        transition: all 0.4s ease;
+        margin-left: 15px ;
+      }
+
+
+      .faicon {
+        padding: 2px;
+margin-left: -30px;
+
+        justify-content: left;
+      }
+
+    
+
+      .dot-typing {
+        position: relative;
+        left: -9999px;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #9880ff;
+        color: #9880ff;
+        box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        animation: dotTyping 1.5s infinite linear;
+      }
+      
+      @keyframes dotTyping {
+        0% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+        16.667% {
+          box-shadow: 9984px -10px 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+        33.333% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+        50% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px -10px 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+        66.667% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+        83.333% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px -10px 0 0 #9880ff;
+        }
+        100% {
+          box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+        }
+      }
+
+.loader-gif {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+      
+      /* Add animation to "page content" */
+      .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+      }
+      
+      @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+      }
+      
+      @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0; opacity:1 }
+      }
+      

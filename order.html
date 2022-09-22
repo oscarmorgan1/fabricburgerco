@@ -25,7 +25,15 @@ pullMenu(location.search)
 
 
 // document.getElementById("menu1").className("text-underlined:before")
+function pageLoad() {
 
+setTimeout(function() {
+document.getElementById("loader").style.display = "none";
+document.getElementById("items").style.display = "block";
+}, 2500);
+}
+
+pageLoad()
 
     </script>
     <nav>
@@ -120,8 +128,8 @@ pullMenu(location.search)
       <br>
       
       <br>
-         
-      <div id="items">
+      <img src="images/burger-loader.gif" id="loader" class="loader-gif"/>
+      <div hidden id="items" class="animate-bottom">
             <!-- <div class="column-4 tile grow project-2">
                 <img class="image" src="/images/product_shots/burger.png">
                 <h2 class="item-title">PLAININO</h2>
@@ -156,7 +164,7 @@ pullMenu(location.search)
                 <h1 id="total-price" class="totalprice">Total:</h1>
              </div>
 
-             <button class="checkout">CHECKOUT</button>
+             <button onclick="initiateCheckoutProcess()" class="checkout">CHECKOUT</button>
            </div>
 
 
@@ -195,8 +203,8 @@ window.onclick = function(event) {
            </script>
 
 
-      <footer class="footer-universal">
-        <div>hi</div>
+      <footer id="orderIDSEC" class="footer-universal">
+        <div id="orderIDSEC">Order ID 19QJH-L6KLW-QhTsY-JRimM-nucg2</div>
       </footer>
 
         </body>
