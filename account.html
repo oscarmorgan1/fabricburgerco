@@ -9,6 +9,8 @@
     <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
     <!-- <script src="/js/stahrt.js"></script> -->
     <script src="/js/firebase.js"></script>
+    <script src="/js/account.js"></script>
+    <script src="/js/navigation.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
      <title>Fabric Burger Co.</title>
@@ -16,6 +18,12 @@
 
 <script>
 
+firebaseinit()
+
+firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {gotUser();{
+      }} else {window.open("login.html",'_self');}
+    })
 
 function dashboard() {
 document.getElementById("dashboard").style.display = 'block'
@@ -68,9 +76,9 @@ pageLoad()
 
     <nav>
         <i class="nav-icons fa-solid fa-magnifying-glass" href=""></i>
-        <a class="titles" href="">Home</a>
+        <a class="titles" href="/index.html">Home</a>
         <img class="logo" src="/images/logo.png" >
-        <a class="titles" href="">Order</a>
+        <a class="titles" href="/order.html">Order</a>
         <div class="dropdown" class="nav-icons" src="/images/search.png">
             <i class="fa-solid fa-user dropbtn"></i>
             <div class="dropdown-content">
@@ -94,8 +102,8 @@ pageLoad()
            <div class="container-info">			
       
              <img class="user-profile-shot" id="product-info-productshot" src="/images/product_shots/crispy chicken aoli.png">
-             <h2 class="user-name">Welcome, Oscar!</h2>
-             <h4 class="user-join">Member since 2022</h4>
+             <h2 id="name" class="user-name">Welcome</h2>
+             <h4 id="joined" class="user-join">Member since 2022</h4>
 
              <button id="dashboard-nav" class="menu-button" onclick="dashboard()"><i class="fa-solid fa-gauge"></i> Dashboard</button>
              <button id="account-nav" class="menu-button" onclick="account()"><i class="fa-solid fa-circle-user"></i> My Account</button>
@@ -114,7 +122,7 @@ pageLoad()
                 <section>
                   <body>
                      <div class="banner-container-info">			
-                      <div class="total-points">500</div>
+                      <div id="points" class="total-points">500</div>
                       <div class="total-points-text">Fabric Points</div>
                      </div>
                      <div class="banner-container-main">
@@ -317,29 +325,33 @@ pageLoad()
         </section>
         
         
-<script>
-  firebaseinit()
-</script>
-
-
-
-<script>
 
 
 
 
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
-</script>
       
 
 </body>
+
+
+<script>
+
+
+  
+  
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  
+  
+  
+
+  </script>
 
 </html>
