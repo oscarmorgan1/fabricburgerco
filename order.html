@@ -30,7 +30,7 @@ function pageLoad() {
 setTimeout(function() {
 document.getElementById("loader").style.display = "none";
 document.getElementById("items").style.display = "block";
-}, 2500);
+}, 4500);
 }
 
 pageLoad()
@@ -45,7 +45,7 @@ pageLoad()
             <i class="fa-solid fa-user dropbtn"></i>
             <div class="dropdown-content">
               <a id="Name" href="#">WELCOME, OSCAR</a>
-              <a id="Account" href="login.html">My Account</a>
+              <a id="Account" href="account.html">My Account</a>
               <a id="Action" onclick='LogoutProcess()'href="">Log out</a>
             </div>
           </div>
@@ -58,8 +58,8 @@ pageLoad()
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/burger.png"><a href="?/burgers" id="menu1" class="menu__link r-link text-underlined">BURGERS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/desert.png"><a href="?/deserts" class="menu__link r-link text-underlined">DESERTS</a></li>
             <li class="menu__group"><img class="section-icon" src="/images/product_shots/drink.png"><a href="?/drinks" class="menu__link r-link text-underlined">DRINKS</a></li>
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/extras.png"><a href="#0" class="menu__link r-link text-underlined">EXTRAS</a></li>
-            <li class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="#0" class="menu__link r-link text-underlined">DEALS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/extras.png"><a href="?/extras" class="menu__link r-link text-underlined">EXTRAS</a></li>
+            <li class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="?/deals" class="menu__link r-link text-underlined">DEALS</a></li>
 
             <li  hidden id="secretTile" class="menu__group"><img class="section-icon" src="/images/product_shots/coupon.png"><a href="#0" class="menu__link r-link text-underlined">SECRET MENU</a></li>
           </ul>

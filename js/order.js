@@ -443,6 +443,7 @@ function updateCart() {
         upgradePricing()
     } else {
         console.log("Cart upgrade successful: Cart Index's are equal.")
+        upgradePricing()
     }
 
 
@@ -479,15 +480,35 @@ function upgradePricing() {
 
 
     console.log("THE PRICING INDEX IS " + pricingIndex)
+
+   
+    console.log("the creation index is" + pricingIndex)
+    creationIndex = 0
+     console.log(cart[creationIndex])
+     console.log(deserts)
+    console.log(cart)
+        if (burgers.includes(cart[pricingIndex]) == true) {
+            console.log("It's a burger")
+            cartTarget = "burgers"
+        } else if (drinks.includes(cart[pricingIndex]) == true) {
+            console.log("It's a drink")
+            cartTarget = "drinks"
+        } else if (deserts.includes(cart[pricingIndex]) == true) {
+            console.log("It's a desert")
+            cartTarget = "deserts"
+        }
     // console.log("length" + cart.length)
     if (pricingIndex < cart.length) {
         // console.log("its greater")
-
-        database.ref("stores/" + storeID + "/menu/" + targetCategory + "/reference/" + cart[pricingIndex] + "/price").on('value', displayPrice);
+        console.log("the cart target" + cartTarget)
+        database.ref("stores/" + storeID + "/menu/" + cartTarget + "/reference/" + cart[pricingIndex] + "/price").on('value', displayPrice);
         function displayPrice(price){
+            console.log("Unit price = " + price.val())
             unitPrice = parseFloat(price.val())
-            // console.log("The item costs: " + unitPrice)
+            console.log("The item costs: " + unitPrice)
             cartPrice += unitPrice
+            console.log(cartPrice)
+            updatePricingUI()
             // console.log(parseInt(price.val()))
         }
 
@@ -508,14 +529,10 @@ function upgradePricing() {
          console.log(formatter.format(cartPrice)); 
          
 
-        document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + discount
-        document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
-        
-    
         // console.log(unitPrice)
         // console.log(cartPrice)
         // console.log(pricingIndex)
-    
+         
         upgradePricing()
 
     } else if (pricingIndex == cart.length) {
@@ -538,6 +555,14 @@ function applyCoupon() {
             }}}
     
     
+}
+
+function updatePricingUI() {
+    
+    document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + discount
+    document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
+    
+
 }
 
 
