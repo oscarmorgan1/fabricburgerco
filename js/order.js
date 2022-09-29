@@ -15,7 +15,13 @@ var totalToCreate;
     var unitPrice;
     var cartPrice = 0;
     var discount = 0;
+    var originalCartPrice = 0;;
     var cartTarget;
+    var coupon;
+    var couponType;
+    var couponValue;
+    var couponDescription;
+    var originalAmountBool;
 
 var burgers = [];
 var deserts = [];
@@ -104,6 +110,12 @@ function pullMenu(menuType) {
     } else if (menuType == "?/deserts") {
         console.log("deserts")
         targetCategory = "deserts"
+    } else if (menuType == "?/extras"){
+        console.log("extras")
+        targetCategory = "extras"
+    } else if (menuType == "?/deals"){
+        console.log("deals")
+        targetCategory = "deals"
     } else {
         // console.log("burger")
         targetCategory = "burgers"
@@ -345,7 +357,7 @@ function addtoCart(cartItem) {
     document.getElementById("product-modal").style.display = "none"
     document.getElementById("notif").classList.toggle('visible');
 
-    firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).set({
+    firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).update({
         cart,
           });
 
@@ -369,7 +381,18 @@ function getCart() {
     while (node.hasChildNodes()) {
         node.removeChild(node.lastChild);
     }
-    updateCart()
+
+    database.ref("stores/" + storeID + "/orders/live/" + orderID + "/coupon").on('value', doesCouponExist)
+    function doesCouponExist(liveCoupon){
+        if (liveCoupon.val() == null) {
+            originalAmountBool = false
+            updateCart()
+        } else {
+            coupon = liveCoupon.val()
+            updateCart()
+        }
+    }
+    
 
     
 
@@ -516,10 +539,10 @@ function upgradePricing() {
 
         document.getElementById("subtotal-price").innerHTML = "SUBTOTAL: $" + cartPrice
 
-        if (discount > 0) {
-            cartPrice -= discount
-            console.log(cartPrice)
-        }
+        // if (discount > 0) {
+        //     cartPrice -= discount
+        //     console.log(cartPrice)
+        // }
 
         const formatter = new Intl.NumberFormat('en-US', {
             minimumFractionDigits: 2,      
@@ -537,7 +560,38 @@ function upgradePricing() {
 
     } else if (pricingIndex == cart.length) {
         console.log("Price upgrade successful: Pricing Index's are equal.")
-        // console.log(cartPrice)
+
+
+       
+        database.ref("stores/" + storeID + "/menu/deals/" + coupon + "/description").on('value', checkCodeDescription);
+
+            function checkCodeDescription(description){
+                couponDescription = description.val()
+            }
+
+            database.ref("stores/" + storeID + "/menu/deals/" + coupon + "/type").on('value', checkCodeType);
+
+            function checkCodeType(type){
+                couponType = type.val()
+                database.ref("stores/" + storeID + "/menu/deals/" + coupon + "/value").on('value', checkCodeValue);
+
+                function checkCodeValue(value){
+                    couponValue = value.val()
+
+                    if (couponType == "amount") {
+                        originalCartPrice = cartPrice
+                        cartPrice -= couponValue
+                        updatePricingUI()
+                    } else if (couponType == "percent") {
+                        originalCartPrice = cartPrice
+                        cartPrice *= couponValue
+                        updatePricingUI()
+                    }
+                }
+            }
+
+            updatePricingUI()
+  
     } else {
         console.log("Price upgrade error: Pricing Index's are greater then cart total.")
         // console.log(cartPrice)
@@ -554,15 +608,59 @@ function applyCoupon() {
                 document.getElementById("secretTile").style.display = "block"
             }}}
     
+
+
+    coupon = document.getElementById("couponField").value
+
+
+    database.ref("stores/" + storeID + "/menu/deals/" + coupon).on('value', checkCode);
+    function checkCode(code){
+        
+        if (code.val() == null){
+            document.getElementById("coupon-error-notif").classList.toggle('visible');
+        } else {
+
+            document.getElementById("coupon-success-notif").classList.toggle('visible');
+
+            firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).update({
+                coupon,
+                  });
+                  originalAmountBool = true
+                  getCart()
+            // checkCodeDetails()
+    
+        }
+
+    }
     
 }
 
-function updatePricingUI() {
-    
-    document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + discount
-    document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
-    
 
+// function checkCodeDetails() {
+    
+// }
+
+// function discountOrder() {
+//     alert(couponCode + couponDescription + couponType + couponValue)
+
+//     if (couponType == "amount") {
+//         discount = couponValue
+//     }
+// }
+
+function updatePricingUI() {
+
+    document.getElementById("orderIDSEC").innerHTML = "Order ID " + orderID
+    if (originalAmountBool == false) {
+        document.getElementById("subtotal-price").innerHTML = "SUBTOTAL: $" + cartPrice
+        document.getElementById("discount-price").innerHTML = "DISCOUNT: -$0"
+        document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
+    } else {
+        document.getElementById("subtotal-price").innerHTML = "SUBTOTAL: $" + originalCartPrice
+        document.getElementById("discount-price").innerHTML = "DISCOUNT: -$" + (originalCartPrice - cartPrice)
+        document.getElementById("total-price").innerHTML = "TOTAL: $" + cartPrice
+    }
+    
 }
 
 

@@ -68,6 +68,9 @@ pageLoad()
       </div>
 
       <div id="notif" class="notif">Item added to cart</div>
+      <div id="coupon-success-notif" class="coupon-success-notif">Coupon applied</div>
+      <div id="coupon-error-notif" class="coupon-error-notif">Coupon invalid</div>
+      <div id="coupon-lenth-notif" class="coupon-length-notif">Coupon invalid</div>
 
       <div id="product-modal" class="product-modal">
 
@@ -157,7 +160,7 @@ pageLoad()
                 <h1 hidden id="cart-empty">Cart Empty</h1>
              </div>
              <input type="text" class="coupon" placeholder="Enter coupons here" maxlength="6" id="couponField"> 
-             <button type="button" onClick="applyCoupon()" class="apply" value=" Apply " id="theButton"></button>
+             <button type="button" onclick="applyCoupon()" class="apply" value=" Apply " id="apply"></button>
 
              <div class="total">
                 <h1 id="subtotal-price" class="subtotal">Subtotal:</h1>
@@ -205,7 +208,7 @@ window.onclick = function(event) {
 
 
       <footer id="orderIDSEC" class="footer-universal">
-        <div id="orderIDSEC">Order ID 19QJH-L6KLW-QhTsY-JRimM-nucg2</div>
+        <div id="orderIDSEC"></div>
       </footer>
 
         </body>

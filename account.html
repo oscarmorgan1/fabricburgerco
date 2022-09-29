@@ -224,6 +224,7 @@ pageLoad()
            </div>
            <div hidden class="account" id="account">
           
+            <div hidden id="load" class="loader-line"></div>
 
             <div class="profile-highlights-container-info">			
               <img class="account-user-profile-shot" id="product-info-productshot" src="/images/product_shots/crispy chicken aoli.png">
@@ -235,7 +236,7 @@ pageLoad()
                 <h1 class="account-name">Oscar Morgan</h1>
                 <h1 class="account-home"><i class="fa-solid fa-location-pin"></i>Conder</h1>
               </div>
-           <button class="save-button">SAVE</button>
+           <button class="save-button" onclick="save()">SAVE</button>
             </div>
 
 
@@ -243,14 +244,14 @@ pageLoad()
               <div style="float:left;margin-right:20px;">
                
                 <br>
-                <input id="name" class="details-label" type="text" value="" name="name">
+                <input id="firstname" class="details-label" type="text" value="" name="name">
               </div>
             </div>
             <div class="name-details-container-main">
               <div style="float:left;margin-right:20px;">
              
                 <br>
-                <input id="name" class="details-label-right" type="text" value="" name="name">
+                <input id="lastname" class="details-label-right" type="text" value="" name="name">
               </div>
             </div>
 
@@ -258,14 +259,14 @@ pageLoad()
               <div style="float:left;margin-right:20px;">
          
                 <br>
-                <input id="name" class="details-label bottom-fields" type="text" value="" name="name">
+                <input id="email" class="details-label bottom-fields" type="text" value="" name="name">
               </div>
             </div>
             <div class="name-details-container-main">
               <div style="float:left;margin-right:20px;">
               
                 <br>
-                <input id="name" class="details-label-right bottom-fields" type="date" value="" name="name">
+                <input id="dob" class="details-label-right bottom-fields" type="date" value="" name="name">
               </div>
             </div>
 

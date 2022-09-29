@@ -795,6 +795,56 @@ filter: brightness(120%);
 
 }
 
+.coupon-success-notif {
+  width: 200px;
+  height: 100px;
+  background: green;
+  font-family: 'head';
+  color: white;
+  border-radius: 3px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  left: -200px;
+
+}
+
+.coupon-error-notif {
+  width: 200px;
+  height: 100px;
+  background: red;
+  font-family: 'head';
+  color: white;
+  border-radius: 3px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  left: -200px;
+
+}
+
+.coupon-length-notif {
+  width: 200px;
+  height: 100px;
+  background: red;
+  font-family: 'head';
+  color: white;
+  border-radius: 3px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  left: -200px;
+
+}
 /*#notif {
   left: 10px;
   opacity: 0;

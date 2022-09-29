@@ -1,7 +1,7 @@
     
     
     
- function firebaseinit() {
+function firebaseinit() {
 
     console.log("Connected to API at api.fabricburger.co 10.0.0.1:5500")
 
@@ -19,7 +19,6 @@
         database = firebase.database()
 
         updateNav()
-
 }
 
 

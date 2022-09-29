@@ -2,18 +2,16 @@
 
 function updateNav() {
 
-
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          //alert("authworked")
-        console.log("auth")
         console.log(firebase.auth().currentUser.uid)
           {
             var userid = firebase.auth().currentUser.uid
             database.ref("users/" + userid + "/Account/First Name").on('value', displayFirstName);
-    function displayFirstName(fn){
-        document.getElementById("Name").innerHTML = ("Welcome, " + fn.val())
-    }
+
+             function displayFirstName(fn){
+             document.getElementById("Name").innerHTML = ("Welcome, " + fn.val())
+             }
 
             
           }
@@ -24,10 +22,6 @@ function updateNav() {
           document.getElementById("Action").style.display = "none";
         }
       })
-
-
-    
-
 }
 
 
@@ -40,7 +34,6 @@ function LogoutProcess() {
 	  // Sign-out successful.
 	  firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
-	    //alert("authworked")
 	    {window.open("dashboard.html",'_self');}
 	  } else {
 
@@ -49,8 +42,5 @@ function LogoutProcess() {
 
 	}).catch(function(error) {
 	  // An error happened.
-
 	});
-
-
 }
