@@ -108,12 +108,8 @@ function myFunction() {
 var l_search = document.getElementById("myInput").value
 var l_count = l_search.length;
 
-
 console.log(l_count)
    
-   
-
-
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
@@ -139,9 +135,7 @@ console.log(l_count)
 
     if (document.getElementById("myInput").value == "") {
         document.getElementById("myUL").style.display = "none";
-    console.log("empty")
-    
-}
+        }
 }
 
 
