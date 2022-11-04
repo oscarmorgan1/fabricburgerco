@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="checkout.css" />
     <link rel="stylesheet" type="text/css" href="track.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/c53865840c.js" crossorigin="anonymous"></script>
-    <script src="/js/order.js"></script>
+    <!-- <script src="/js/order.js"></script> -->
     <script src="/js/firebase.js"></script>
     <script src="/js/navigation.js"></script>
+    <!-- <script src="/js/checkout.js"></script> -->
+    <script src="/js/track.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 
@@ -21,6 +24,12 @@
     <script>
 
 firebaseinit()
+track()
+getMenuArchive()
+// savedDetails()
+
+
+
 
 
 // document.getElementById("menu1").className("text-underlined:before")
@@ -43,11 +52,23 @@ firebaseinit()
       </nav>
 
 
+     
+   
+    
+        </div>
+      
+      </div>
+    
+
 
       <section>
         <body>
+
+
+          
            <div class="container-info">			
             
+             
             <section>
               <body>
                  <div class="img-container-info">			
@@ -60,65 +81,48 @@ firebaseinit()
               </section>
               
             
-              <div class="tracker-container"></div>
-
-              <div class="slideshow-container">
-
-                <div class="mySlides">
-                  <q>I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
-                  <p class="author">- John Keats</p>
+              <div id="track-box" class="tracker-container">
+                <div class="tracker" id="tracker">
+                  <h2 class="status-text" id="status-text">Tracking...</h2>
                 </div>
-                
-                <div class="mySlides">
-                  <q>But man is not made for defeat. A man can be destroyed but not defeated.</q>
-                  <p class="author">- Ernest Hemingway</p>
-                </div>
-                
-                <div class="mySlides">
-                  <q>I have not failed. I've just found 10,000 ways that won't work.</q>
-                  <p class="author">- Thomas A. Edison</p>
-                </div>
-                
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-                
-                </div>
-                
-                <div class="dot-container">
-                  <span class="dot" onclick="currentSlide(1)"></span> 
-                  <span class="dot" onclick="currentSlide(2)"></span> 
-                  <span class="dot" onclick="currentSlide(3)"></span> 
-                </div>
+              </div>
+            
            </div>
-
            <div class="container-main">
+             <img src="/images/logo.png" class="cart-logo" alt="">
+             
+             <div class="order-item" id="cart">
+                
+             </div>
+   
 
+             <div class="total">
+                <h1 id="subtotal-price" class="subtotal">Subtotal:</h1>
+                <h1 id="discount-price" class="discount">Discount:</h1>
+                <h1 id="total-price" class="totalprice">Total:</h1>
+             </div>
 
             
-
-
-
            </div>
-        </body>
-        </section>
-
-        
 
 
-     
+
          
            <script>
 
 
 
+var modal = document.getElementById("item-modal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 
 
-function launchProduct() {
-    modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 // span.onclick = function() {
@@ -126,46 +130,86 @@ function launchProduct() {
 // }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
 
-
-
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
            </script>
 
 
-    
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+  
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+
+
+
+
+
+  </script>
+
+      <footer id="orderIDSEC" class="footer-universal">
+        <div id="orderIDSEC"></div>
+      </footer>
+
         </body>
 
+        <script>
+
+
+function proceedToPayment() {
+
+
+  document.getElementById("current-address").style.display = "block"
+  currentSelected()
+  validateDetails()
+
+var field = document.getElementById("your-details-field")
+var paymentField = document.getElementById("payment-field")
+tab.classList.toggle("active");
+if (field.style.maxHeight) {
+
+      field.style.maxHeight = null;
+      paymentField.style.maxHeight = field.scrollHeight + "px";
+
+      document.getElementById("your-details").style.opacity = "0.4"
+      document.getElementById("your-payment").style.opacity = "1"
+    } else {
+      field.style.maxHeight = field.scrollHeight + "px";
+      document.getElementById("your-payment").style.opacity = "1";
+    } 
+
+}
+
+function openDetails() {
+
+setTimeout(function() {
+  var field = document.getElementById("your-details-field")
+  field.style.maxHeight = field.scrollHeight + "px";
+}, 500);
+
+
+
+}
+
+
+function currentSelected() {
+  document.getElementById("current-tick").checked = true;
+  document.getElementById("sd-current-tick").checked = false
+  document.getElementById("current-address").style.backgroundColor = "#e0dddd"
+}
+
+openDetails()
+
+
+        </script>
         
         </section>

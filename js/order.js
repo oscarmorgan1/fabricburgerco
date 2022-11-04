@@ -417,7 +417,10 @@ function updateCart() {
         } else if (deserts.includes(cart[creationIndex]) == true) {
             console.log("It's a desert")
             cartTarget = "deserts"
-        } else {
+        }  else if (extras.includes(cart[creationIndex]) == true) {
+            console.log("It's a extra")
+            cartTarget = "extras"
+        }  else {
             console.log("Status Unkown")
         }
         console.log(cartTarget)
@@ -478,6 +481,7 @@ function updateCart() {
 }
 
 
+// this functions pulls the web cart from the databse
 function pullWebCart() {
     database.ref("stores/" + storeID + "/orders/live/" + orderID + "/cart").on('value', getLiveCart)
     function getLiveCart(liveCart){

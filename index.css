@@ -1,0 +1,150 @@
+.header-container-info {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    background-color: white; }
+    @media (min-width: 768px) {
+      .header-container-info {
+        float: left;
+        /*position: fixed;*/
+        left: 0;
+        top: 0;
+        height: 45vh;
+        width: 50%; } }
+  
+  
+  
+  .header-container-main {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 490px;
+    background-color: white; }
+    @media (min-width: 768px) {
+      .header-container-main {
+        float: right;
+        /*position: fixed;*/
+        right: 0;
+        top: 0;
+        height: 45vh;
+        width: 50%; } }
+  
+  
+     .burger-headshot {
+        width: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 11%;
+        position: relative;
+       
+     }
+
+
+     .header-container {
+        /* background-color: #df7c43; */
+        height: 70vh;
+ 
+     }
+     .header-main-title {
+        text-align: left;
+        font-size: 3rem;
+        margin-top: 20%;
+        font-family: 'head';
+        margin-left: 20%;
+        padding-right: 10%;
+     }
+
+     .header-sub-title {
+        text-align: left;
+        margin-left: 20%;
+        font-family: 'head';
+     }
+
+
+.start-button {
+    background-color: #df7c43;
+    margin-top: 20px;
+    margin-left: 10px;
+    border: 0;
+    height: 40px;
+    width: 125px;
+    font-family: 'head';
+    border-radius: 5px;
+    text-align: left;
+}
+
+.learn-button {
+    background-color: transparent;
+    margin-top: 20px;
+    margin-left: 20%;
+ border-color: #df7c43 #df7c43 #df7c43 #df7c43;
+ border-radius: 5px;
+    border: 1;
+    height: 40px;
+    width: 125px;
+    font-family: 'head';
+    text-align: left;
+}
+
+.quick-arrow {
+    transition: all 0.4s ease;
+
+    margin-left: 10px;
+  }
+
+
+  .quick-arrow:hover {
+    transition: all 0.4s ease;
+    margin-left: 12px ;
+  }
+
+
+  .burger-headshot-title {
+    font-family: 'head';
+
+    padding-right: 30px;
+    margin-bottom: 50px;
+font-size: small;
+    float: right;
+    margin-right: 30px;
+position: relative;
+  }
+
+
+
+  .highlights-container {
+    background-color: white;
+    min-height: 20%;
+    margin-top: -35px;
+    padding-left: 25px;
+  }
+
+
+
+
+  .column-4 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color:#df7c43;
+    margin:20px;
+    height: 250px;
+    }
+
+
+    .project-4 {
+        background-color:#df7c43;
+        border-radius: 20px;
+      }
+
+
+      .tile {
+        margin-top: 80px;
+      }
+
+      .left {
+        margin-left:7.5%
+      }
+    

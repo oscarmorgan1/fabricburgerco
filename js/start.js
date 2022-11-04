@@ -1,11 +1,12 @@
 var pickedID;
+var method;
 
 
 function pickup() {
     console.log("picked")
 
     var pickuptile = document.getElementById("pickup")
-    
+    method = "pickup"
     var delivereytile = document.getElementById("deliverey")
     var savedtile = document.getElementById("saved")
     var headertext = document.getElementById("banner-text")
@@ -280,6 +281,7 @@ console.log(pickedID)
 var OrderID = sessionStorage.setItem("Order ID", orderID)
 var PickedID = sessionStorage.setItem("Store ID", pickedID)
 var StoreUID = sessionStorage.setItem("Store UID", storeUID)
+var Service = sessionStorage.setItem("Service Method", method)
  window.open("/order.html", '_self')
 
 }

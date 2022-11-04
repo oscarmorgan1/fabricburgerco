@@ -10,6 +10,7 @@
   <script src="/js/navigation.js"></script>
   <script src="/js/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <title>Fabric Burger Co.</title>
 </head>
 
@@ -54,7 +55,7 @@ function loginwithokta() {
 
 <body>
 
-  <button onclick="loginwithokta()">OKTA</button>
+  <!-- <button onclick="loginwithokta()">OKTA</button> -->
     
 
     <nav>
@@ -73,31 +74,38 @@ function loginwithokta() {
       </nav>
 
 
-      <div class="container">
-        <img class="bg-image" src="/images/home-burger.jpeg" >
-
-        <div class="centered">Hand stiched burgers from our home <br> to yours.</div>
-        <div class="smaller">Welcome to Fabric Burger Co.</div>
-
-
-
-
-           
-
-            <button name="submit" class="buttons action_btn submit" type="submit" value="Start Order" onclick="location.href='/start.html'">Start Order</button>
-
-
-    
+      <div class="header-container">
+        
+        <section>
+          <body>
+             <div class="header-container-info">			
+               <h1 class="header-main-title">Not burgers but experiences, from our home, to yours.</h1>
+               <h3 class="header-sub-title">We harness the power of locally sourced ingredients to create experiences, not food.</h3>
+            
+               <button class="learn-button">Learn More<i class="fa-solid fa-arrow-right quick-arrow"></i></button>
+               <button class="start-button" onclick="window.location.href='/start.html';">Start Order<i class="fa-solid fa-arrow-right quick-arrow"></i></button>
+              </div>
+             <div class="header-container-main">
+            
+               <img class="burger-headshot" alt="burger headshot" src="/images/product_shots/board/1.png">
+               <h3 class="burger-headshot-title">The Awesome Burger | 2200kjs</h3>
+             </div>
+          </body>
+        </section>
+          
+          
       </div>
 
 
-<script>
+
+      <div class="highlights-container">
+
+        <div class="column-4 tile grow project-3 top-row left"></div>
+        <div class="column-4 tile grow project-3 top-row"></div>
+        <div class="column-4 tile grow project-3 top-row"></div>
 
 
-    
-</script>
-
-
+      </div>
 
 
 </body>

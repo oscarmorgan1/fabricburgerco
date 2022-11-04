@@ -1,161 +1,57 @@
-var firstName;
-    var lastName;
-    var email;
-    var phone;
-    var fullAddress;
-    var unit;
-    var street;
-    var suburb;
-    var state;
-    var zip;
+var trackID = window.location.search.slice(1)
 
 
-
-function validateDetails() {
-
-     firstName = document.getElementById("fn").value
-     lastName = document.getElementById("ln").value
-     email = document.getElementById("e").value 
-     phone = document.getElementById("pn").value
-     fullAddress = document.getElementById("ad1").value + " " + document.getElementById("suburb").value + " " + document.getElementById("s").value + " " + document.getElementById("zip").value
+function track() {
+    if (window.location.search) {
 
 
+           database.ref("track/" + window.location.search.slice(1) + "/status").on('value', getStatus);
+    function getStatus(status){
+       
+     
 
-
-    document.getElementById("your-details-tab").innerHTML = "Your Details" + " | " + firstName + " " + lastName + " | " + fullAddress
-
-    document.getElementById("cd-n").innerHTML = firstName + " " + lastName
-
-    document.getElementById("cd-fa").innerHTML = fullAddress
-
-    document.getElementById("cd-c").innerHTML = email + " | " + phone
-
-
-
-
-}
-
-
-
-
-function savedDetails() {
-
-
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          
-
-
-            document.getElementById("sd-fa").style.display = "block"
-            document.getElementById("sd-c").style.display = "block"
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/First Name").on('value', displayFirstName);
-            function displayFirstName(fn){
-                firstName = fn.val()
-                document.getElementById("fn").value = firstName
-                
-            }
-        
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Last Name").on('value', displayLastName);
-            function displayLastName(ln){
-                lastName = ln.val()
-                document.getElementById("sd-n").innerHTML = firstName + " " + lastName
-                document.getElementById("ln").value = lastName
-            }
-        
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Email").on('value', displayEmail);
-            function displayEmail(email){
-                email = email.val()
-                document.getElementById("e").value = email
-                
-
-                database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Phone").on('value', displayPhone);
-                function displayPhone(pn){
-                phone = pn.val()
-                document.getElementById("sd-c").innerHTML = email + " | " + phone
-                document.getElementById("pn").value = phone
-            }
-            }
-
-            
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Full").on('value', displayAddress);
-            function displayAddress(ad){
-                fullAddress = ad.val()
-                document.getElementById("sd-fa").innerHTML = fullAddress
-            }
-
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Parts/Unit").on('value', displayUnit);
-            function displayUnit(un){
-                unit = un.val()
-            }
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Parts/Street").on('value', displayStreet);
-            function displayStreet(sn){
-                street = sn.val()
-                document.getElementById("ad1").value = unit + " " + street
-            }
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Parts/Suburb").on('value', displaySuburb);
-            function displaySuburb(sub){
-                suburb = sub.val()
-                document.getElementById("suburb").value = suburb
-            }
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Parts/State").on('value', displayState);
-            function displayState(stn){
-                state = stn.val()
-                document.getElementById("s").value = state
-            }
-
-            database.ref("users/" + firebase.auth().currentUser.uid + "/Account/Address/Parts/Zip").on('value', displayZip);
-            function displayZip(zn){
-                zip = zn.val()
-                document.getElementById("zip").value = zip
-            }
-            
-            
-         
-
-            document.getElementById("sd-fa").innerHTML = fullAddress
-            document.getElementById("sd-current-tick").style.display = "block"
-            document.getElementById("sd-current-tick").checked = "true"
-            
-                    
-        } else {
-  
+        if (status.val() == "placed") {
+     
+            document.getElementById("tracker").style.width = "25%"
+            document.getElementById("status-text").innerHTML = "Order Placed"
+        } else if (status.val() == "preparing") {
+            document.getElementById("tracker").style.width = "36%"
+            document.getElementById("status-text").innerHTML = "Preparing order"
+            document.getElementById("tracker").style.backgroundColor = "red"
+            document.getElementById("tracker").style.borderColor = "red"
+        } else if (status.val() == "cooking") {
+            document.getElementById("tracker").style.width = "54%"
+            document.getElementById("status-text").innerHTML = "Cooking order"
+            document.getElementById("tracker").style.backgroundColor = "red"
+            document.getElementById("tracker").style.borderColor = "red"
+        } else if (status.val() == "final") {
+            document.getElementById("tracker").style.width = "72%"
+            document.getElementById("status-text").innerHTML = "Final touches"
+            document.getElementById("tracker").style.backgroundColor = "yellow"
+            document.getElementById("tracker").style.borderColor = "yellow"
+        } else if (status.val() == "ready") {
+            document.getElementById("tracker").style.width = "99%"
+            document.getElementById("status-text").innerHTML = "Ready in store"
+            document.getElementById("tracker").style.backgroundColor = "green"
+            document.getElementById("tracker").style.borderColor = "green"
         }
-  
-  
-      })
+    }
 
+
+    } else {
+        window.open("/start.html", '_self')
+
+
+ 
+    }
 }
 
 
-function orderIntent() {
-    var modal = document.getElementById("myModal");
 
 
-  modal.style.display = "block";
-
-  setTimeout(function() {
-  
-    document.getElementById("ld-gif").src = "/images/onetick.gif"
-    document.getElementById("status-text").innerHTML = "Order Placed"
-    document.getElementById("terms-text").innerHTML = "You'll be automatically redirected"
-    placeOrder()
-
-    setTimeout(function() {
-        
-        var trackLink = "/track.html?" + orderID
-        window.open(trackLink, '_self')
-      }, 3000);
-  }, 2000);
 
 
-}
+
 
 
 
@@ -200,7 +96,6 @@ var menuArchiveIndex = 0
 // console.log(sessionStorage.getItem("Store UID"))
 
 var orderID = sessionStorage.getItem("Order ID")
-var service = sessionStorage.getItem("Service Method")
 var storeID = sessionStorage.getItem("Store ID")
 var storeUID = sessionStorage.getItem("Store UID")
 var activeMenu = [];
@@ -582,7 +477,10 @@ function updateCart() {
         } else if (deserts.includes(cart[creationIndex]) == true) {
             console.log("It's a desert")
             cartTarget = "deserts"
-        } else {
+        }  else if (extras.includes(cart[creationIndex]) == true) {
+            console.log("It's a extra")
+            cartTarget = "extras"
+        }  else {
             console.log("Status Unkown")
         }
         console.log(cartTarget)
@@ -607,11 +505,19 @@ function updateCart() {
             
         }
 
+        var newItemDelete = document.createElement('h6')
+        newItem.appendChild(newItemDelete)
+        newItemDelete.innerHTML = "x"
+        newItemDelete.id = "cardID-" + cart.length
+        newItemDelete.classList = "cart-item-delete"
+        newItemDelete.addEventListener("click", deleteItem.bind(null, cart.length - 1));
+    
         var newItemText = document.createElement('h4')
         newItem.appendChild(newItemText)
         newItemText.innerHTML = "1x " + cart[creationIndex]
 
-      
+        // document.getElementById("add-to-cart").removeEventListener("click", addtoCart.bind(null, productName));
+       
 
         creationIndex = creationIndex + 1
         console.log(creationIndex)
@@ -625,6 +531,8 @@ function updateCart() {
     }
 
 
+    
+
          
         // pullWebCart()
     // setTimeout(function(){ document.getElementById("notif").classList.toggle('visible'); }, 5000);
@@ -633,7 +541,7 @@ function updateCart() {
 
 // this functions pulls the web cart from the databse
 function pullWebCart() {
-    database.ref("stores/" + storeID + "/orders/live/" + orderID + "/cart").on('value', getLiveCart)
+    database.ref("track/" + trackID + "/cart").on('value', getLiveCart)
     function getLiveCart(liveCart){
        
         // console.log(liveCart.val())
@@ -847,80 +755,3 @@ function toggleMenu(type) {
 function initiateCheckoutProcess() {
     window.open("/checkout.html?" + orderID, '_self')
 }
-
-
-function placeOrder() {
-
-
-
-              //remove from live orders
-              firebase.database().ref("stores/" + storeID + "/orders/live/" + orderID).remove()
-
-
-
-              date = new Date();
-              year = date.getFullYear();
-              month = date.getMonth() + 1;
-              day = date.getDate();
-              var fullDate = year + "/" + month + "/" + day
-              var timeStamp = new Date().getTime()
-
-
-              //save to stores database
-            firebase.database().ref("stores/" + storeID + "/orders/active/" + service + "/" + [fullDate] + "/" + timeStamp + "/" + orderID + "/details").update({
-                "First Name": firstName,
-                "Last Name": lastName,
-                "Email" : email,
-                "Phone" : phone
-                });
-
-                
-                firebase.database().ref("stores/" + storeID + "/orders/active/" + service + "/" + [fullDate] + "/" + timeStamp + "/" + orderID).update({
-                    cart,
-                    cartPrice,
-                    service
-                    });
-
-          
-
-               
-
-              // Publish to live tracking
-          firebase.database().ref("track/" + orderID).update({
-            cart,
-            "status": "placed",
-            "method": service
-              });
-
-              sendEmail()
-
-
-
-}
-
-
-
-// var orderID = "JOpf1-bLcZS-OGapu-vOoST-K1P1Z"
-// var firstName = "Oscar"
-
-
-function sendEmail() {
-   
-
-    Email.send({
-        Host : "smtp.elasticemail.com",
-        Username : "mail@fabricburger.co",
-        Password : "1678CA9744BAB28CC51091A07A1D221A448F",
-        To : email,
-        From : "mail@fabricburger.co",
-        Subject : "Thanks for Ordering.",
-        Body : "Hi " + firstName + ", <br> <br> <br> Thanks for ordering. Your order number is <br> <br> You can track the progress of your order <button> <a href=\"fabricburger.co/track?" + orderID + "\">here</a></button>. <br> <br> <br> -Fabric Burger Co." 
-           }).then(
-      message => console.log(message)
-    );
-
-
-    }
-    
-    // Body : "Hi " + firstName + ", <br> <br> <br> Thanks for ordering. Your order number is " + orderID + "<br> <br> You can track the progress of your order <button> <a href=\"localhost:5500/track.html?\">here</a></button>. <br> <br> <br> -Fabric Burger Co." 
-   
